@@ -1,0 +1,423 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Offboard Employee",
+    "aliasName": null,
+    "tag": null,
+    "description": "Onboard or Offboard an employee based on the received instruction",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [],
+    "synchronous": false,
+    "lastModifyDate": 1647860446,
+    "collection": "\/api\/3\/workflow_collections\/160d414b-d1d2-44a6-ab10-0df6b1f694fd",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/3dc57c06-5920-4a98-a17c-9aeea3b96aa7",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Compute Disabled Services",
+            "description": null,
+            "arguments": {
+                "disabled_services": "{%if vars.provisioned_services|length > 0%} {%set tmp_list=vars.provisioned_services|json_query('[].data[][\"Server FQDN\"][]')%} {{tmp_list|join('<br \/>')}} {%endif%}"
+            },
+            "status": null,
+            "top": "1100",
+            "left": "500",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "uuid": "0a85e913-c3d5-4438-8b0f-0d8dc4c477d7",
+            "id": 15227
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Group Does Not Exist",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "msg": "Group: {{vars.group}} does not exist on Active Directory"
+                },
+                "message": {
+                    "tags": [],
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "tenant": "",
+                    "content": "<p><span style=\"background-color: red; color: white; border-radius: 4px;\">Error:<\/span> Group does not exist<\/p>",
+                    "records": ""
+                },
+                "version": "3.2.0",
+                "connector": "cyops_utilities",
+                "operation": "raise_exception",
+                "operationTitle": "Utils: Raise Exception",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "680",
+            "left": "100",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "uuid": "1bed063c-78e3-43b2-9f6c-2481f154254b",
+            "id": 15219
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "User Offboarded Notification",
+            "description": null,
+            "arguments": {
+                "config": "88c3d39c-2fa9-4731-b00d-29815008f17c",
+                "params": {
+                    "cc": "",
+                    "to": "{{vars.mail_from}}",
+                    "bcc": "",
+                    "from": "FortiSOAR_Automatiop",
+                    "type": "Manual Input",
+                    "content": "<p>User <span style=\"background-color: #e03e2d;\">Offboarding<\/span> Task has been completed <span style=\"background-color: #2dc26b;\">Successfully<\/span><\/p>\n<p><strong>Active Directory User Details:<\/strong><\/p>\n<ul>\n<li>Username: {{vars.username}}<\/li>\n<li>Group: {{vars.group}}<\/li>\n<li><strong style=\"letter-spacing: 0.76px;\">Active Directory: dc1.fortielab.com<\/strong><\/li>\n<\/ul>\n<p><strong style=\"letter-spacing: 0.76px;\"><strong>Disabled Main Services:<\/strong><\/strong><\/p>\n<ul>\n<li>Active Directory Account<\/li>\n<li>Microsoft Exchange Mailbox<\/li>\n<\/ul>\n<p><strong style=\"letter-spacing: 0.76px;\"><strong>Other Disabled Accesses:<\/strong><\/strong><\/p>\n<p><strong style=\"letter-spacing: 0.76px;\"><strong>{{vars.disabled_services}}<\/strong><\/strong><\/p>",
+                    "subject": "Task: [{{vars.input.records[0].emailSubject}}] Completed",
+                    "iri_list": "",
+                    "body_type": "Rich Text",
+                    "file_name": "",
+                    "file_path": ""
+                },
+                "message": {
+                    "tags": [],
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "tenant": "",
+                    "content": "<p><span style=\"background-color: green; color: white; border-radius: 4px;\">Info:<\/span> HR notification sent<\/p>",
+                    "records": ""
+                },
+                "version": "2.4.2",
+                "from_str": "admin@example.com",
+                "connector": "smtp",
+                "operation": "send_email_new",
+                "operationTitle": "Send Email",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "1240",
+            "left": "500",
+            "stepType": "\/api\/3\/workflow_step_types\/4c0019b2-055c-44d0-968c-678a0c2d762e",
+            "uuid": "3490006e-740f-4b10-bc97-10c0608dd660",
+            "id": 15217
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "resource": "alerts",
+                "resources": [
+                    "alerts"
+                ],
+                "step_variables": {
+                    "input": {
+                        "params": [],
+                        "records": [
+                            "{{vars.input.records[0]}}"
+                        ]
+                    },
+                    "useMockOutput": "{{globalVars.Demo_mode}}",
+                    "target_services_playbooks_iris": "[]"
+                },
+                "fieldbasedtrigger": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "object",
+                            "field": "type",
+                            "value": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82",
+                            "_value": {
+                                "@id": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82",
+                                "itemValue": "Suspicious Email"
+                            },
+                            "operator": "eq"
+                        },
+                        {
+                            "type": "primitive",
+                            "field": "emailSubject",
+                            "value": "%offboard%",
+                            "operator": "like",
+                            "_operator": "like"
+                        }
+                    ]
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/ea155646-3821-4542-9702-b246da430a8d",
+            "uuid": "3dc57c06-5920-4a98-a17c-9aeea3b96aa7",
+            "id": 15121
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Group Details",
+            "description": null,
+            "arguments": {
+                "name": "Active Directory",
+                "config": "bee4fd2880d2404d9ee8a478f59aaf2f",
+                "params": {
+                    "search_object": "Group",
+                    "search_attr_value": "{{vars.group}}"
+                },
+                "message": {
+                    "tags": [],
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "tenant": "",
+                    "content": "<p><span style=\"background-color: green; color: white; border-radius: 4px;\">Info:<\/span> Checks if the Group exists<\/p>",
+                    "records": ""
+                },
+                "version": "2.2.0",
+                "connector": "activedirectory",
+                "operation": "get_specific_object_details",
+                "mock_result": "{\n    \"data\": {\n      \"cookie\": null,\n      \"entries\": [\n        {\n          \"dn\": \"CN={{vars.parameters.group}},CN=Users,DC=fortielab,DC=com\",\n          \"attributes\": {\n            \"cn\": \"{{vars.parameters.group}}\",\n            \"info\": \"{{vars.group_to_playbook_map[vars.parameters.group]}}\",\n            \"name\": \"{{vars.parameters.group}}\",\n            \"member\": [\n              \"CN=dbuser3,CN=Users,DC=fortielab,DC=com\",\n              \"CN=dbuser2,CN=Users,DC=fortielab,DC=com\",\n              \"CN=dbuser1,CN=Users,DC=fortielab,DC=com\",\n              \"CN=dba11,CN=Users,DC=fortielab,DC=com\",\n              \"CN=dba10,CN=Users,DC=fortielab,DC=com\",\n              \"CN=dba9,CN=Users,DC=fortielab,DC=com\",\n              \"CN=dba8,CN=Users,DC=fortielab,DC=com\",\n              \"CN=dba7,CN=Users,DC=fortielab,DC=com\",\n              \"CN=dba1,CN=Users,DC=fortielab,DC=com\"\n            ],\n            \"groupType\": \"Global Security Group\",\n            \"objectSid\": \"S-1-5-21-1057186202-1089730122-574899179-1213\",\n            \"objectGUID\": \"{88c87138-085b-47b1-88fb-d01b505fba4a}\",\n            \"uSNChanged\": 817552,\n            \"uSNCreated\": 810768,\n            \"objectClass\": [\n              \"top\",\n              \"group\"\n            ],\n            \"whenChanged\": 1647503379,\n            \"whenCreated\": 1647266035,\n            \"instanceType\": 4,\n            \"objectCategory\": \"CN=Group,CN=Schema,CN=Configuration,DC=fortielab,DC=com\",\n            \"sAMAccountName\": \"{{vars.parameters.group}}\",\n            \"sAMAccountType\": \"SAM_GROUP_OBJECT\",\n            \"distinguishedName\": \"CN={{vars.parameters.group}},CN=Users,DC=fortielab,DC=com\",\n            \"dSCorePropagationData\": [\n              null\n            ]\n          }\n        }\n      ]\n    },\n    \"status\": \"Success\",\n    \"message\": \"\",\n    \"operation\": null\n  }",
+                "operationTitle": "Get Specific Object Details",
+                "step_variables": {
+                    "group_definition": "{{vars.result.data.entries}}"
+                }
+            },
+            "status": null,
+            "top": "435",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "uuid": "40035293-5766-44de-856a-7f2f6a512a44",
+            "id": 15220
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Disable User on Active Directory",
+            "description": null,
+            "arguments": {
+                "message": {
+                    "tags": [],
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "tenant": "",
+                    "content": "<p><span style=\"background-color: green; color: white; border-radius: 4px;\">Info:<\/span> user: &lt;&lt;{{vars.username}}&gt;&gt; disabled on Active Directory<\/p>",
+                    "records": ""
+                },
+                "arguments": {
+                    "parameters": "{{vars.parameters}}"
+                },
+                "apply_async": false,
+                "step_variables": {
+                    "created_user": "{{vars.result}}"
+                },
+                "workflowReference": "\/api\/3\/workflows\/8304f11f-7dbd-441d-8017-b9e248b17c5b"
+            },
+            "status": null,
+            "top": "820",
+            "left": "500",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "uuid": "65dcf24c-1bfb-4d05-9342-57007507bcbf",
+            "id": 15221
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Group Exists",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "no",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/1bed063c-78e3-43b2-9f6c-2481f154254b",
+                        "step_name": "Group Does Not Exist"
+                    },
+                    {
+                        "option": "yes",
+                        "step_iri": "\/api\/3\/workflow_steps\/f3b7568b-dd41-4f61-8750-6beec0faa6ef",
+                        "condition": "{{ vars.group_definition.0.attributes.info|length > 0 }}",
+                        "step_name": "Compute Eligible Services List"
+                    }
+                ]
+            },
+            "status": null,
+            "top": "570",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "uuid": "830e924a-71e6-4e43-889d-c2adb4954034",
+            "id": 15218
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Deprovision Eligible Services",
+            "description": null,
+            "arguments": {
+                "when": "{{vars.target_services_playbooks_iris|length >0}}",
+                "message": {
+                    "tags": [],
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "tenant": "",
+                    "content": "<p><span style=\"background-color: green; color: white; border-radius: 4px;\">Info:<\/span> User deprovisioned from all services<\/p>",
+                    "records": ""
+                },
+                "for_each": {
+                    "item": "{{vars.target_services_playbooks_iris}}",
+                    "parallel": false,
+                    "condition": ""
+                },
+                "arguments": {
+                    "parameters": "{{vars.parameters}}"
+                },
+                "apply_async": false,
+                "step_variables": {
+                    "provisioned_services": "{{vars.result}}"
+                },
+                "workflowReference": "{{vars.item}}"
+            },
+            "status": null,
+            "top": "960",
+            "left": "500",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "uuid": "8334b1ed-e611-4c69-849e-a4a6d3451626",
+            "id": 15222
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Compute Parameters",
+            "description": null,
+            "arguments": {
+                "parameters": "{\"username\":\"{{vars.username}}\",\"action\":\"offboard\",\"group\":\"{{vars.group}}\"}",
+                "group_to_playbook_map": "{\n\"sysadmins\":\"9c827fcf-53bd-403a-b3bf-406f1a27d9d8\",\n\"dbadmins\":\"03e2e8ef-b7ca-4386-8f1a-676ed190cc8c\"\n}"
+            },
+            "status": null,
+            "top": "300",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "uuid": "a45be140-f32c-465e-81d0-5e3faf16ed39",
+            "id": 15210
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Parse Input Parameters",
+            "description": null,
+            "arguments": {
+                "group": "{{vars.input.records[0].emailBody|regex_search('(?<=Group:\\s)[a-z-A-z0-9.]+')}}",
+                "username": "{{vars.input.records[0].emailBody|regex_search('(?<=Username:\\s)[a-z-A-z0-9.]+')}}",
+                "mail_from": "{{vars.input.records[0].emailFrom|regex_search(\"[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+\")}}"
+            },
+            "status": null,
+            "top": "165",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "uuid": "a9556ef2-c8df-4c05-b9de-77aad1d32246",
+            "id": 15039
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Compute Eligible Services List",
+            "description": null,
+            "arguments": {
+                "__build_pb_iri_list": "{%set tmp_uuids=vars.group_definition.0.attributes.info.split(',')%}\n{%for entry in tmp_uuids%}\n{{vars.target_services_playbooks_iris.append('\/api\/3\/workflows\/{}'.format(entry))}}\n{%endfor%}"
+            },
+            "status": null,
+            "top": "680",
+            "left": "500",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "uuid": "f3b7568b-dd41-4f61-8750-6beec0faa6ef",
+            "id": 15211
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Parse Input Parameters -> Compute Parameters",
+            "targetStep": "\/api\/3\/workflow_steps\/a45be140-f32c-465e-81d0-5e3faf16ed39",
+            "sourceStep": "\/api\/3\/workflow_steps\/a9556ef2-c8df-4c05-b9de-77aad1d32246",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "a461b4a0-cc2a-42d9-ba0d-18a4508e6055"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Group Exists -> Group Does Not Exist",
+            "targetStep": "\/api\/3\/workflow_steps\/1bed063c-78e3-43b2-9f6c-2481f154254b",
+            "sourceStep": "\/api\/3\/workflow_steps\/830e924a-71e6-4e43-889d-c2adb4954034",
+            "label": "no",
+            "isExecuted": false,
+            "uuid": "28f9c1ad-1391-4dd7-87dd-d9be964197a2"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Group Exists -> Compute Eligible Services List",
+            "targetStep": "\/api\/3\/workflow_steps\/f3b7568b-dd41-4f61-8750-6beec0faa6ef",
+            "sourceStep": "\/api\/3\/workflow_steps\/830e924a-71e6-4e43-889d-c2adb4954034",
+            "label": "yes",
+            "isExecuted": false,
+            "uuid": "8cb7ce04-d18d-4611-97d7-c1f9c634b58b"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Compute Parameters -> Get Group Details",
+            "targetStep": "\/api\/3\/workflow_steps\/40035293-5766-44de-856a-7f2f6a512a44",
+            "sourceStep": "\/api\/3\/workflow_steps\/a45be140-f32c-465e-81d0-5e3faf16ed39",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "8aef863a-9c6e-43d1-8993-636ee9f4d8ca"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Group Details -> Group Exists",
+            "targetStep": "\/api\/3\/workflow_steps\/830e924a-71e6-4e43-889d-c2adb4954034",
+            "sourceStep": "\/api\/3\/workflow_steps\/40035293-5766-44de-856a-7f2f6a512a44",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "c258f390-ca7a-404a-9c09-ea54a886b14a"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Compute Eligible Services List -> Create User on Active Directory",
+            "targetStep": "\/api\/3\/workflow_steps\/65dcf24c-1bfb-4d05-9342-57007507bcbf",
+            "sourceStep": "\/api\/3\/workflow_steps\/f3b7568b-dd41-4f61-8750-6beec0faa6ef",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "04df4b20-b284-4333-96f8-2c58c525f289"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Disable User on Active Directory -> Provision Eligible Services",
+            "targetStep": "\/api\/3\/workflow_steps\/8334b1ed-e611-4c69-849e-a4a6d3451626",
+            "sourceStep": "\/api\/3\/workflow_steps\/65dcf24c-1bfb-4d05-9342-57007507bcbf",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "f70ce3f5-b5dc-4d2c-b708-ffa269d9e23a"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Parse Input Parameters",
+            "targetStep": "\/api\/3\/workflow_steps\/a9556ef2-c8df-4c05-b9de-77aad1d32246",
+            "sourceStep": "\/api\/3\/workflow_steps\/3dc57c06-5920-4a98-a17c-9aeea3b96aa7",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "42967f55-86f3-4d67-963d-85b9a0c3380e"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Deprovision Eligible Services -> Compute Disabled Services",
+            "targetStep": "\/api\/3\/workflow_steps\/0a85e913-c3d5-4438-8b0f-0d8dc4c477d7",
+            "sourceStep": "\/api\/3\/workflow_steps\/8334b1ed-e611-4c69-849e-a4a6d3451626",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "51d8481b-49ee-4afc-a523-c91536fb8972"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Compute Disabled Services -> User Offboarded Notification",
+            "targetStep": "\/api\/3\/workflow_steps\/3490006e-740f-4b10-bc97-10c0608dd660",
+            "sourceStep": "\/api\/3\/workflow_steps\/0a85e913-c3d5-4438-8b0f-0d8dc4c477d7",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "7b6bc78e-8179-439c-86cd-20b1f48b21d7"
+        }
+    ],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "ff7227ce-c2e2-4c97-ac0e-fabb7a9f9ec3",
+    "recordTags": [],
+    "id": 2793,
+    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "createDate": 1646151121,
+    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "modifyDate": 1647860447,
+    "owners": [],
+    "isPrivate": false
+}

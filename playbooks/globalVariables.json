@@ -1,0 +1,20 @@
+[
+    {
+        "id": 38,
+        "name": "EOF_DB_User",
+        "value": "jstuart",
+        "default_value": ""
+    },
+    {
+        "id": 39,
+        "name": "EOF_SYS_User",
+        "value": "bfoghali",
+        "default_value": ""
+    },
+    {
+        "id": 20,
+        "name": "Demo_mode",
+        "value": "true",
+        "default_value": "true"
+    }
+]

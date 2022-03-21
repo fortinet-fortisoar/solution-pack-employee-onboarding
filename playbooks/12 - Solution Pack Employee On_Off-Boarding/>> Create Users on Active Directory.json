@@ -1,0 +1,354 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": ">> Create Users on Active Directory",
+    "aliasName": null,
+    "tag": null,
+    "description": "Creates user and associate it with a group",
+    "isActive": true,
+    "debug": true,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [
+        "parameters"
+    ],
+    "synchronous": false,
+    "lastModifyDate": 1647596555,
+    "collection": "\/api\/3\/workflow_collections\/160d414b-d1d2-44a6-ab10-0df6b1f694fd",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/ab5765a7-3315-40d0-b56f-dbccab7ae710",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "User Already Exists",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "msg": "Error: User Already Exists"
+                },
+                "version": "3.2.0",
+                "connector": "cyops_utilities",
+                "operation": "raise_exception",
+                "operationTitle": "Utils: Raise Exception",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "700",
+            "left": "100",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "uuid": "00789a0f-d596-4470-ab6a-b6693267d480",
+            "id": 15350
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Create AD Account",
+            "description": null,
+            "arguments": {
+                "name": "Active Directory",
+                "config": "bee4fd2880d2404d9ee8a478f59aaf2f",
+                "params": {
+                    "mail": "{{vars.input.params.parameters.username}}@{{vars.input.params.parameters.domain}}",
+                    "title": "{{vars.input.params.parameters.title}}",
+                    "object_dn": "{{vars.user_dn}}",
+                    "description": "Add User using FortiSOAR",
+                    "displayName": "{{vars.input.params.parameters.username}}",
+                    "object_class": "User",
+                    "enable_account": true,
+                    "sAMAccountName": "{{vars.input.params.parameters.username}}",
+                    "custom_attributes": "",
+                    "userPrincipalName": "{{vars.input.params.parameters.username}}@{{vars.input.params.parameters.domain}}"
+                },
+                "version": "2.2.0",
+                "connector": "activedirectory",
+                "operation": "add_object",
+                "mock_result": "{\n  \"data\": {\n    \"dn\": \"CN={{vars.input.params.parameters.username}},CN=Users,DC=fortielab,DC=com\",\n    \"type\": \"addResponse\",\n    \"result\": 0,\n    \"message\": \"User successfully added\",\n    \"referrals\": null,\n    \"description\": \"success\"\n  },\n  \"status\": \"Success\",\n  \"message\": \"\",\n  \"operation\": null\n}",
+                "operationTitle": "Add Object",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "700",
+            "left": "500",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "uuid": "0b6eb54c-d384-480c-9d21-05ef15d30069",
+            "id": 14938
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "User Exists",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "no",
+                        "step_iri": "\/api\/3\/workflow_steps\/0b6eb54c-d384-480c-9d21-05ef15d30069",
+                        "condition": "{{ vars.steps.Get_User_Details.data.entries | length == 0 }}",
+                        "step_name": "Create AD Account"
+                    },
+                    {
+                        "option": "yes",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/00789a0f-d596-4470-ab6a-b6693267d480",
+                        "step_name": "User Already Exists"
+                    }
+                ]
+            },
+            "status": null,
+            "top": "570",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "uuid": "2e633cd4-d11d-453f-bf9a-e3d4aa9dbc3e",
+            "id": 15349
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Group Details",
+            "description": null,
+            "arguments": {
+                "name": "Active Directory",
+                "config": "bee4fd2880d2404d9ee8a478f59aaf2f",
+                "params": {
+                    "search_object": "Group",
+                    "search_attr_value": "{{vars.input.params.parameters.group}}"
+                },
+                "version": "2.2.0",
+                "connector": "activedirectory",
+                "operation": "get_specific_object_details",
+                "mock_result": "{\n    \"data\": {\n      \"cookie\": null,\n      \"entries\": [\n        {\n          \"dn\": \"CN={{vars.input.params.parameters.group}},CN=Users,DC=fortielab,DC=com\",\n          \"attributes\": {\n            \"cn\": \"{{vars.input.params.parameters.group}}\",\n            \"info\": \"03e2e8ef-b7ca-4386-8f1a-676ed190cc8c\",\n            \"name\": \"{{vars.input.params.parameters.group}}\",\n            \"member\": [\n              \"CN=dbuser3,CN=Users,DC=fortielab,DC=com\",\n              \"CN=dbuser2,CN=Users,DC=fortielab,DC=com\",\n              \"CN=dbuser1,CN=Users,DC=fortielab,DC=com\",\n              \"CN=dba11,CN=Users,DC=fortielab,DC=com\",\n              \"CN=dba10,CN=Users,DC=fortielab,DC=com\",\n              \"CN=dba9,CN=Users,DC=fortielab,DC=com\",\n              \"CN=dba8,CN=Users,DC=fortielab,DC=com\",\n              \"CN=dba7,CN=Users,DC=fortielab,DC=com\",\n              \"CN=dba1,CN=Users,DC=fortielab,DC=com\"\n            ],\n            \"groupType\": \"Global Security Group\",\n            \"objectSid\": \"S-1-5-21-1057186202-1089730122-574899179-1213\",\n            \"objectGUID\": \"{88c87138-085b-47b1-88fb-d01b505fba4a}\",\n            \"uSNChanged\": 817552,\n            \"uSNCreated\": 810768,\n            \"objectClass\": [\n              \"top\",\n              \"group\"\n            ],\n            \"whenChanged\": 1647503379,\n            \"whenCreated\": 1647266035,\n            \"instanceType\": 4,\n            \"objectCategory\": \"CN=Group,CN=Schema,CN=Configuration,DC=fortielab,DC=com\",\n            \"sAMAccountName\": \"{{vars.input.params.parameters.group}}\",\n            \"sAMAccountType\": \"SAM_GROUP_OBJECT\",\n            \"distinguishedName\": \"CN={{vars.input.params.parameters.group}},CN=Users,DC=fortielab,DC=com\",\n            \"dSCorePropagationData\": [\n              null\n            ]\n          }\n        }\n      ]\n    },\n    \"status\": \"Success\",\n    \"message\": \"\",\n    \"operation\": null\n  }",
+                "operationTitle": "Get Specific Object Details",
+                "step_variables": {
+                    "group_dn": "{{vars.result.data.entries[0].dn}}",
+                    "group_details": "{{vars.result.data}}"
+                }
+            },
+            "status": null,
+            "top": "300",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "uuid": "465dbbbf-d2a1-41b4-82ac-b36ad0684ab6",
+            "id": 14949
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "user_dn": "CN={{vars.input.params.parameters.username}},CN=Users,DC=fortielab,DC=com",
+                "user_password": "{%set u_table=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']%}{%set l_table=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']%}{%set s_table=['-','_','#','%']%}{% for n in range(4) %}{{u_table[range(1, 26) | random]}}{{l_table[range(1, 26) | random]}}{{s_table[range(1, 7) | random]}}{{range(1000, 9999) | random|string}}{% endfor %}"
+            },
+            "status": null,
+            "top": "165",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "uuid": "709eac37-2457-4cb5-99a1-274e1bbc72f5",
+            "id": 14941
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get User Details",
+            "description": null,
+            "arguments": {
+                "name": "Active Directory",
+                "config": "bee4fd2880d2404d9ee8a478f59aaf2f",
+                "params": {
+                    "search_object": "User",
+                    "search_attr_value": "{{vars.input.params.parameters.username}}"
+                },
+                "version": "2.2.0",
+                "connector": "activedirectory",
+                "operation": "get_specific_object_details",
+                "mock_result": "{\n  \"data\": {\n    \"cookie\": null,\n    \"entries\": [],\n    \"message\": \"Record not found in Active Directory\"\n  },\n  \"status\": \"Success\",\n  \"message\": \"\",\n  \"operation\": null\n}",
+                "operationTitle": "Get Specific Object Details",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "435",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "uuid": "9890d2dd-9d0b-4379-b00a-49fcc0cdef65",
+            "id": 14944
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "_tmp": "",
+                    "input": {
+                        "params": []
+                    },
+                    "useMockOutput": "{{globalVars.Demo_mode}}"
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "uuid": "ab5765a7-3315-40d0-b56f-dbccab7ae710",
+            "id": 14940
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Set User Password",
+            "description": null,
+            "arguments": {
+                "name": "Active Directory",
+                "config": "bee4fd2880d2404d9ee8a478f59aaf2f",
+                "params": {
+                    "new_password": "{{vars.user_password}}",
+                    "search_attr_name": "Distinguished Name",
+                    "search_attr_value": "{{vars.user_dn}}"
+                },
+                "version": "2.2.0",
+                "connector": "activedirectory",
+                "operation": "reset_password",
+                "mock_result": "{\n  \"data\": {\n    \"dn\": \"\",\n    \"type\": \"modifyResponse\",\n    \"result\": 0,\n    \"message\": \"\",\n    \"referrals\": null,\n    \"description\": \"success\"\n  },\n  \"status\": \"Success\",\n  \"message\": \"\",\n  \"operation\": null\n}",
+                "operationTitle": "Reset Password",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "980",
+            "left": "500",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "uuid": "d3a15dd1-30c9-41a2-8fab-16bb37453085",
+            "id": 14950
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Add User to Group",
+            "description": null,
+            "arguments": {
+                "name": "Active Directory",
+                "config": "bee4fd2880d2404d9ee8a478f59aaf2f",
+                "params": {
+                    "group_dn": "{{vars.group_dn}}",
+                    "object_dn": "{{vars.user_dn}}",
+                    "object_class": "User"
+                },
+                "version": "2.2.0",
+                "connector": "activedirectory",
+                "operation": "add_group_members",
+                "mock_result": "{\n  \"data\": {\n    \"dn\": [\n      \"CN={{vars.input.params.parameters.username}},CN=Users,DC=fortielab,DC=com\"\n    ],\n    \"type\": \"modifyResponse\",\n    \"result\": 0,\n    \"message\": \"User successfully added into group\",\n    \"group_dn\": [\n      \"CN={{vars.input.params.parameters.group}},CN=Users,DC=fortielab,DC=com\"\n    ],\n    \"referrals\": null,\n    \"description\": \"success\"\n  },\n  \"status\": \"Success\",\n  \"message\": \"\",\n  \"operation\": null\n}",
+                "operationTitle": "Add Group Members",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "840",
+            "left": "500",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "uuid": "dd4bb125-cb54-4303-ba7f-25db2fba5bc0",
+            "id": 14946
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Data Output",
+            "description": null,
+            "arguments": {
+                "user_dn": "{{vars.user_dn}}",
+                "group_dn": "{{vars.group_dn}}",
+                "username": "{{vars.input.params.parameters.username}}",
+                "op_status": "{{vars.steps.Set_User_Password.data.description}}",
+                "user_password": "{{vars.user_password}}"
+            },
+            "status": null,
+            "top": "1120",
+            "left": "500",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "uuid": "f04ae9c3-e8cc-43f9-9729-3d9695803c25",
+            "id": 14971
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/709eac37-2457-4cb5-99a1-274e1bbc72f5",
+            "sourceStep": "\/api\/3\/workflow_steps\/ab5765a7-3315-40d0-b56f-dbccab7ae710",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "def04d55-5523-49f4-bcef-b27f03c9e00a"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Create AD Account -> Copy 1 of Create AD Account",
+            "targetStep": "\/api\/3\/workflow_steps\/dd4bb125-cb54-4303-ba7f-25db2fba5bc0",
+            "sourceStep": "\/api\/3\/workflow_steps\/0b6eb54c-d384-480c-9d21-05ef15d30069",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "366ebc23-cefd-484d-ac37-ccb822d8e0e4"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Get Group Details",
+            "targetStep": "\/api\/3\/workflow_steps\/465dbbbf-d2a1-41b4-82ac-b36ad0684ab6",
+            "sourceStep": "\/api\/3\/workflow_steps\/709eac37-2457-4cb5-99a1-274e1bbc72f5",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "e6452559-52f7-42bc-91fe-39acf2e5f9e9"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Add User to Group -> Copy  of Add User to Group",
+            "targetStep": "\/api\/3\/workflow_steps\/d3a15dd1-30c9-41a2-8fab-16bb37453085",
+            "sourceStep": "\/api\/3\/workflow_steps\/dd4bb125-cb54-4303-ba7f-25db2fba5bc0",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "c507867f-4cbe-4d1a-8736-a72653cd7b96"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Set User Password -> Data Output",
+            "targetStep": "\/api\/3\/workflow_steps\/f04ae9c3-e8cc-43f9-9729-3d9695803c25",
+            "sourceStep": "\/api\/3\/workflow_steps\/d3a15dd1-30c9-41a2-8fab-16bb37453085",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "aca84f3a-1376-4e0b-ba02-562c7426691d"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get User Details -> User Exists",
+            "targetStep": "\/api\/3\/workflow_steps\/2e633cd4-d11d-453f-bf9a-e3d4aa9dbc3e",
+            "sourceStep": "\/api\/3\/workflow_steps\/9890d2dd-9d0b-4379-b00a-49fcc0cdef65",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "2cc2f64e-64a5-4ca0-83a0-73cf0b1b76e9"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "User Exists -> Create AD Account",
+            "targetStep": "\/api\/3\/workflow_steps\/0b6eb54c-d384-480c-9d21-05ef15d30069",
+            "sourceStep": "\/api\/3\/workflow_steps\/2e633cd4-d11d-453f-bf9a-e3d4aa9dbc3e",
+            "label": "no",
+            "isExecuted": false,
+            "uuid": "22e45d29-6e2f-4e36-9df1-8291ba4b267a"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "User Exists -> User Already Exists",
+            "targetStep": "\/api\/3\/workflow_steps\/00789a0f-d596-4470-ab6a-b6693267d480",
+            "sourceStep": "\/api\/3\/workflow_steps\/2e633cd4-d11d-453f-bf9a-e3d4aa9dbc3e",
+            "label": "yes",
+            "isExecuted": false,
+            "uuid": "08363fef-637a-476e-b570-6123fa07677a"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Group Details -> Get User Details",
+            "targetStep": "\/api\/3\/workflow_steps\/9890d2dd-9d0b-4379-b00a-49fcc0cdef65",
+            "sourceStep": "\/api\/3\/workflow_steps\/465dbbbf-d2a1-41b4-82ac-b36ad0684ab6",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "b42d253f-9eff-4c66-a8ea-254ded111ddc"
+        }
+    ],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "1293d73e-3770-470c-a194-46638b405e2a",
+    "recordTags": [],
+    "id": 2792,
+    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "createDate": 1646143156,
+    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "modifyDate": 1647596556,
+    "owners": [],
+    "isPrivate": false
+}
