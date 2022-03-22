@@ -46,8 +46,11 @@ If the action is to **deprovision** similar logic is applied except the action w
 
 ### 3) Installation/Deployment:
 - Download the repo's zip from this page, click on: **Code > Download ZIP** and save the ZIP file to your workstation
-- Open FortiSOAR import wizard located at: **Settings > Import Wizard**. Click on ![Import From File](import_from_file.png)
-- Drag and drop the zip file you downloaded and follow the wizard
+- Open FortiSOAR import wizard located at: **Settings > Import Wizard**. Click on 
+
+![Drag File to Import](https://raw.githubusercontent.com/fortinet-fortisoar/solution-pack-employee-onboarding/develop/docs/import.png)
+
+- Select the zip file you downloaded and follow the wizard
 
 ### 4) Simulation Steps:
 #### 4.1) For Simulation mode (Fake mock data):
