@@ -13,7 +13,6 @@
         "parameters"
     ],
     "synchronous": false,
-    "lastModifyDate": 1647595426,
     "collection": "\/api\/3\/workflow_collections\/160d414b-d1d2-44a6-ab10-0df6b1f694fd",
     "versions": [],
     "triggerStep": "\/api\/3\/workflow_steps\/2f804274-4bb4-457e-ac21-d99cb407e138",
@@ -34,8 +33,7 @@
             "top": "30",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
-            "uuid": "2f804274-4bb4-457e-ac21-d99cb407e138",
-            "id": 15177
+            "uuid": "2f804274-4bb4-457e-ac21-d99cb407e138"
         },
         {
             "@type": "WorkflowStep",
@@ -59,8 +57,7 @@
             "top": "165",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
-            "uuid": "5dc5950a-4c05-4a94-8de0-3fb9d38de0c7",
-            "id": 15178
+            "uuid": "5dc5950a-4c05-4a94-8de0-3fb9d38de0c7"
         },
         {
             "@type": "WorkflowStep",
@@ -73,8 +70,7 @@
             "top": "300",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "uuid": "d50f5e72-fe4f-4688-b51d-7e2010bf9020",
-            "id": 15225
+            "uuid": "d50f5e72-fe4f-4688-b51d-7e2010bf9020"
         }
     ],
     "routes": [
@@ -99,12 +95,8 @@
     ],
     "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
     "uuid": "3437acb7-dcd8-4bbb-9e52-9443ad4fe12f",
-    "recordTags": [],
-    "id": 2860,
-    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "createDate": 1647261765,
-    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "modifyDate": 1647595426,
     "owners": [],
-    "isPrivate": false
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": []
 }

@@ -1,15 +1,15 @@
 [
     {
-        "id": 38,
+        "id": 34,
         "name": "EOF_DB_User",
         "value": "jstuart",
-        "default_value": ""
+        "default_value": "jstuart"
     },
     {
-        "id": 39,
+        "id": 35,
         "name": "EOF_SYS_User",
         "value": "bfoghali",
-        "default_value": ""
+        "default_value": "bfoghali"
     },
     {
         "id": 20,

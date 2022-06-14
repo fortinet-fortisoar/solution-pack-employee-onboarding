@@ -1,4 +1,4 @@
-# FortiSOAR Solution Pack: Employee Onboarding
+# FortiSOAR Solution Pack: Automated Employee Onboarding
 
 [![Solution Pack Video](https://img.youtube.com/vi/ytVDEOY432A/0.jpg)](https://www.youtube.com/embed/ytVDEOY432A)
 

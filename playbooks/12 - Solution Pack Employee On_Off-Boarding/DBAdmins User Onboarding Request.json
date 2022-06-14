@@ -11,7 +11,6 @@
     "remoteExecutableFlag": false,
     "parameters": [],
     "synchronous": false,
-    "lastModifyDate": 1647506988,
     "collection": "\/api\/3\/workflow_collections\/160d414b-d1d2-44a6-ab10-0df6b1f694fd",
     "versions": [],
     "triggerStep": "\/api\/3\/workflow_steps\/955764cc-cebc-4207-b3e3-6a5203db98d7",
@@ -27,8 +26,7 @@
             "top": "165",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "uuid": "0b88b10f-6f89-4705-a35d-1a985da091b2",
-            "id": 15202
+            "uuid": "0b88b10f-6f89-4705-a35d-1a985da091b2"
         },
         {
             "@type": "WorkflowStep",
@@ -62,8 +60,7 @@
             "top": "30",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-            "uuid": "955764cc-cebc-4207-b3e3-6a5203db98d7",
-            "id": 15190
+            "uuid": "955764cc-cebc-4207-b3e3-6a5203db98d7"
         },
         {
             "@type": "WorkflowStep",
@@ -76,8 +73,7 @@
             "top": "435",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "uuid": "ae02f0d2-bc50-43c8-b46b-1dc057788923",
-            "id": 15306
+            "uuid": "ae02f0d2-bc50-43c8-b46b-1dc057788923"
         },
         {
             "@type": "WorkflowStep",
@@ -101,8 +97,7 @@
             "top": "300",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
-            "uuid": "c4a520b8-262c-43d6-8a91-faaba10dbeac",
-            "id": 15189
+            "uuid": "c4a520b8-262c-43d6-8a91-faaba10dbeac"
         }
     ],
     "routes": [
@@ -136,12 +131,8 @@
     ],
     "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
     "uuid": "f8715a17-a585-4c5f-9f54-77270a8ac47d",
-    "recordTags": [],
-    "id": 2864,
-    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "createDate": 1647269260,
-    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "modifyDate": 1647506988,
     "owners": [],
-    "isPrivate": false
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": []
 }

@@ -13,7 +13,6 @@
         "parameters"
     ],
     "synchronous": false,
-    "lastModifyDate": 1647595571,
     "collection": "\/api\/3\/workflow_collections\/160d414b-d1d2-44a6-ab10-0df6b1f694fd",
     "versions": [],
     "triggerStep": "\/api\/3\/workflow_steps\/df9a10d1-34fc-42af-814d-b4b621addbb6",
@@ -29,8 +28,7 @@
             "top": "435",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "uuid": "67e50e71-4ade-48eb-bc0f-e064dffa54ff",
-            "id": 15226
+            "uuid": "67e50e71-4ade-48eb-bc0f-e064dffa54ff"
         },
         {
             "@type": "WorkflowStep",
@@ -48,8 +46,7 @@
             "top": "30",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
-            "uuid": "df9a10d1-34fc-42af-814d-b4b621addbb6",
-            "id": 14812
+            "uuid": "df9a10d1-34fc-42af-814d-b4b621addbb6"
         },
         {
             "@type": "WorkflowStep",
@@ -60,8 +57,7 @@
             "top": "165",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "uuid": "eed57b2d-31d7-42cf-ac33-82740ea7153c",
-            "id": 14814
+            "uuid": "eed57b2d-31d7-42cf-ac33-82740ea7153c"
         },
         {
             "@type": "WorkflowStep",
@@ -87,8 +83,7 @@
             "top": "300",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
-            "uuid": "f6eacf17-b1d3-4320-a1f1-dea6d1a5206e",
-            "id": 15119
+            "uuid": "f6eacf17-b1d3-4320-a1f1-dea6d1a5206e"
         }
     ],
     "routes": [
@@ -122,12 +117,8 @@
     ],
     "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
     "uuid": "ad3cb98b-231e-4123-b17a-4cc144ed5adf",
-    "recordTags": [],
-    "id": 2766,
-    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "createDate": 1646116160,
-    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "modifyDate": 1647595572,
     "owners": [],
-    "isPrivate": false
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": []
 }
