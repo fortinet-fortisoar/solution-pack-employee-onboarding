@@ -11,6 +11,13 @@
             "label": "SOAR Framework",
             "version": "1.0.0",
             "minVersion": null
+        },
+        {
+            "name": "socSimulator",
+            "type": "solutionpack",
+            "label": "SOC Simulator",
+            "version": "1.1.0",
+            "minVersion": null
         }
     ],
     "prerequisite": null,
@@ -28,28 +35,20 @@
         "Offboarding"
     ],
     "fsrMinCompatibility": "7.2.0",
-    "date": "2022-06-14T14:01:38+00:00",
+    "date": "2022-06-29T14:31:27+00:00",
     "contents": {
-        "modules": {
-            "scenario": {
-                "name": "Scenario",
-                "apiName": "scenario"
-            }
-        },
         "viewTemplates": {
             "scenario": {
                 "name": "Scenario",
                 "apiName": "scenario",
                 "views": [
-                    "list",
-                    "detail",
-                    "form"
+                    "list"
                 ]
             }
         },
         "playbooks": [
             {
-                "name": "12 - Solution Pack Employee On_Off-Boarding"
+                "name": "02 - Use Case - Employee On_Off-Boarding"
             }
         ],
         "globalVariables": [
@@ -70,6 +69,12 @@
                 "name": "Demo_mode",
                 "value": "true",
                 "default_value": "true"
+            }
+        ],
+        "connectors": [
+            {
+                "name": "FortiSOAR SOC Simulator",
+                "apiName": "fortisoar-soc-simulator"
             }
         ],
         "recordSets": [
