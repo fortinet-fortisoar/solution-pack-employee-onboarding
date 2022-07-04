@@ -1,0 +1,11 @@
+{
+    "@context": "\/api\/3\/contexts\/WorkflowCollection",
+    "@type": "WorkflowCollection",
+    "name": "02 - Use Case - Employee On\/Off-Boarding",
+    "description": null,
+    "visible": true,
+    "image": null,
+    "uuid": "160d414b-d1d2-44a6-ab10-0df6b1f694fd",
+    "deletedAt": null,
+    "recordTags": []
+}
