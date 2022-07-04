@@ -5,3 +5,5 @@
 [Solution Pack Video Introduction](https://www.youtube.com/embed/ytVDEOY432A)
                                    
 Documentation available [here](docs/README.md)
+
+**Compatibility:** FortiSOAR 7.2.1+ 
