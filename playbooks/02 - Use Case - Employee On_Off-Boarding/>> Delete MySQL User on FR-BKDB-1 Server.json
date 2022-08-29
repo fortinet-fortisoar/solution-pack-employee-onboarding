@@ -33,6 +33,7 @@
             "top": "30",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
             "uuid": "2f804274-4bb4-457e-ac21-d99cb407e138"
         },
         {
@@ -57,6 +58,7 @@
             "top": "165",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
             "uuid": "5dc5950a-4c05-4a94-8de0-3fb9d38de0c7"
         },
         {
@@ -70,19 +72,11 @@
             "top": "300",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
             "uuid": "d50f5e72-fe4f-4688-b51d-7e2010bf9020"
         }
     ],
     "routes": [
-        {
-            "@type": "WorkflowRoute",
-            "name": "Start -> Create User",
-            "targetStep": "\/api\/3\/workflow_steps\/5dc5950a-4c05-4a94-8de0-3fb9d38de0c7",
-            "sourceStep": "\/api\/3\/workflow_steps\/2f804274-4bb4-457e-ac21-d99cb407e138",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "791881fc-49b2-4de9-9e92-045adbd7a85e"
-        },
         {
             "@type": "WorkflowRoute",
             "name": "Delete User -> Data Output",
@@ -91,8 +85,18 @@
             "label": null,
             "isExecuted": false,
             "uuid": "179f224a-eeb9-44a8-9b2e-d98c27b8e237"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Create User",
+            "targetStep": "\/api\/3\/workflow_steps\/5dc5950a-4c05-4a94-8de0-3fb9d38de0c7",
+            "sourceStep": "\/api\/3\/workflow_steps\/2f804274-4bb4-457e-ac21-d99cb407e138",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "791881fc-49b2-4de9-9e92-045adbd7a85e"
         }
     ],
+    "groups": [],
     "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
     "uuid": "3437acb7-dcd8-4bbb-9e52-9443ad4fe12f",
     "owners": [],

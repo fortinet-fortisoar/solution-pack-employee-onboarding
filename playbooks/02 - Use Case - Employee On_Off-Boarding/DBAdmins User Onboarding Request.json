@@ -26,6 +26,7 @@
             "top": "165",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
             "uuid": "0b88b10f-6f89-4705-a35d-1a985da091b2"
         },
         {
@@ -60,6 +61,7 @@
             "top": "30",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+            "group": null,
             "uuid": "955764cc-cebc-4207-b3e3-6a5203db98d7"
         },
         {
@@ -73,6 +75,7 @@
             "top": "435",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
             "uuid": "ae02f0d2-bc50-43c8-b46b-1dc057788923"
         },
         {
@@ -97,6 +100,7 @@
             "top": "300",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
             "uuid": "c4a520b8-262c-43d6-8a91-faaba10dbeac"
         }
     ],
@@ -129,6 +133,7 @@
             "uuid": "4fc2fb3a-376d-4c70-beef-b7d52f756b3d"
         }
     ],
+    "groups": [],
     "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
     "uuid": "f8715a17-a585-4c5f-9f54-77270a8ac47d",
     "owners": [],

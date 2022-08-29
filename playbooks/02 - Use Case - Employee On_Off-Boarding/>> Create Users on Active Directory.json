@@ -6,7 +6,7 @@
     "tag": null,
     "description": "Creates user and associate it with a group",
     "isActive": true,
-    "debug": true,
+    "debug": false,
     "singleRecordExecution": false,
     "remoteExecutableFlag": false,
     "parameters": [
@@ -35,6 +35,7 @@
             "top": "700",
             "left": "100",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
             "uuid": "00789a0f-d596-4470-ab6a-b6693267d480"
         },
         {
@@ -67,6 +68,7 @@
             "top": "700",
             "left": "500",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
             "uuid": "0b6eb54c-d384-480c-9d21-05ef15d30069"
         },
         {
@@ -93,6 +95,7 @@
             "top": "570",
             "left": "300",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": null,
             "uuid": "2e633cd4-d11d-453f-bf9a-e3d4aa9dbc3e"
         },
         {
@@ -120,6 +123,7 @@
             "top": "300",
             "left": "300",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
             "uuid": "465dbbbf-d2a1-41b4-82ac-b36ad0684ab6"
         },
         {
@@ -134,6 +138,7 @@
             "top": "165",
             "left": "300",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
             "uuid": "709eac37-2457-4cb5-99a1-274e1bbc72f5"
         },
         {
@@ -158,6 +163,7 @@
             "top": "435",
             "left": "300",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
             "uuid": "9890d2dd-9d0b-4379-b00a-49fcc0cdef65"
         },
         {
@@ -177,6 +183,7 @@
             "top": "30",
             "left": "300",
             "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
             "uuid": "ab5765a7-3315-40d0-b56f-dbccab7ae710"
         },
         {
@@ -202,6 +209,7 @@
             "top": "980",
             "left": "500",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
             "uuid": "d3a15dd1-30c9-41a2-8fab-16bb37453085"
         },
         {
@@ -227,6 +235,7 @@
             "top": "840",
             "left": "500",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
             "uuid": "dd4bb125-cb54-4303-ba7f-25db2fba5bc0"
         },
         {
@@ -244,63 +253,19 @@
             "top": "1120",
             "left": "500",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
             "uuid": "f04ae9c3-e8cc-43f9-9729-3d9695803c25"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Start -> Configuration",
-            "targetStep": "\/api\/3\/workflow_steps\/709eac37-2457-4cb5-99a1-274e1bbc72f5",
-            "sourceStep": "\/api\/3\/workflow_steps\/ab5765a7-3315-40d0-b56f-dbccab7ae710",
-            "label": null,
+            "name": "User Exists -> User Already Exists",
+            "targetStep": "\/api\/3\/workflow_steps\/00789a0f-d596-4470-ab6a-b6693267d480",
+            "sourceStep": "\/api\/3\/workflow_steps\/2e633cd4-d11d-453f-bf9a-e3d4aa9dbc3e",
+            "label": "yes",
             "isExecuted": false,
-            "uuid": "def04d55-5523-49f4-bcef-b27f03c9e00a"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Create AD Account -> Copy 1 of Create AD Account",
-            "targetStep": "\/api\/3\/workflow_steps\/dd4bb125-cb54-4303-ba7f-25db2fba5bc0",
-            "sourceStep": "\/api\/3\/workflow_steps\/0b6eb54c-d384-480c-9d21-05ef15d30069",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "366ebc23-cefd-484d-ac37-ccb822d8e0e4"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Configuration -> Get Group Details",
-            "targetStep": "\/api\/3\/workflow_steps\/465dbbbf-d2a1-41b4-82ac-b36ad0684ab6",
-            "sourceStep": "\/api\/3\/workflow_steps\/709eac37-2457-4cb5-99a1-274e1bbc72f5",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "e6452559-52f7-42bc-91fe-39acf2e5f9e9"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Add User to Group -> Copy  of Add User to Group",
-            "targetStep": "\/api\/3\/workflow_steps\/d3a15dd1-30c9-41a2-8fab-16bb37453085",
-            "sourceStep": "\/api\/3\/workflow_steps\/dd4bb125-cb54-4303-ba7f-25db2fba5bc0",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "c507867f-4cbe-4d1a-8736-a72653cd7b96"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Set User Password -> Data Output",
-            "targetStep": "\/api\/3\/workflow_steps\/f04ae9c3-e8cc-43f9-9729-3d9695803c25",
-            "sourceStep": "\/api\/3\/workflow_steps\/d3a15dd1-30c9-41a2-8fab-16bb37453085",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "aca84f3a-1376-4e0b-ba02-562c7426691d"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Get User Details -> User Exists",
-            "targetStep": "\/api\/3\/workflow_steps\/2e633cd4-d11d-453f-bf9a-e3d4aa9dbc3e",
-            "sourceStep": "\/api\/3\/workflow_steps\/9890d2dd-9d0b-4379-b00a-49fcc0cdef65",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "2cc2f64e-64a5-4ca0-83a0-73cf0b1b76e9"
+            "uuid": "08363fef-637a-476e-b570-6123fa07677a"
         },
         {
             "@type": "WorkflowRoute",
@@ -313,12 +278,30 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "User Exists -> User Already Exists",
-            "targetStep": "\/api\/3\/workflow_steps\/00789a0f-d596-4470-ab6a-b6693267d480",
-            "sourceStep": "\/api\/3\/workflow_steps\/2e633cd4-d11d-453f-bf9a-e3d4aa9dbc3e",
-            "label": "yes",
+            "name": "Get User Details -> User Exists",
+            "targetStep": "\/api\/3\/workflow_steps\/2e633cd4-d11d-453f-bf9a-e3d4aa9dbc3e",
+            "sourceStep": "\/api\/3\/workflow_steps\/9890d2dd-9d0b-4379-b00a-49fcc0cdef65",
+            "label": null,
             "isExecuted": false,
-            "uuid": "08363fef-637a-476e-b570-6123fa07677a"
+            "uuid": "2cc2f64e-64a5-4ca0-83a0-73cf0b1b76e9"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Create AD Account -> Copy 1 of Create AD Account",
+            "targetStep": "\/api\/3\/workflow_steps\/dd4bb125-cb54-4303-ba7f-25db2fba5bc0",
+            "sourceStep": "\/api\/3\/workflow_steps\/0b6eb54c-d384-480c-9d21-05ef15d30069",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "366ebc23-cefd-484d-ac37-ccb822d8e0e4"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Set User Password -> Data Output",
+            "targetStep": "\/api\/3\/workflow_steps\/f04ae9c3-e8cc-43f9-9729-3d9695803c25",
+            "sourceStep": "\/api\/3\/workflow_steps\/d3a15dd1-30c9-41a2-8fab-16bb37453085",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "aca84f3a-1376-4e0b-ba02-562c7426691d"
         },
         {
             "@type": "WorkflowRoute",
@@ -328,8 +311,36 @@
             "label": null,
             "isExecuted": false,
             "uuid": "b42d253f-9eff-4c66-a8ea-254ded111ddc"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Add User to Group -> Copy  of Add User to Group",
+            "targetStep": "\/api\/3\/workflow_steps\/d3a15dd1-30c9-41a2-8fab-16bb37453085",
+            "sourceStep": "\/api\/3\/workflow_steps\/dd4bb125-cb54-4303-ba7f-25db2fba5bc0",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "c507867f-4cbe-4d1a-8736-a72653cd7b96"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/709eac37-2457-4cb5-99a1-274e1bbc72f5",
+            "sourceStep": "\/api\/3\/workflow_steps\/ab5765a7-3315-40d0-b56f-dbccab7ae710",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "def04d55-5523-49f4-bcef-b27f03c9e00a"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Get Group Details",
+            "targetStep": "\/api\/3\/workflow_steps\/465dbbbf-d2a1-41b4-82ac-b36ad0684ab6",
+            "sourceStep": "\/api\/3\/workflow_steps\/709eac37-2457-4cb5-99a1-274e1bbc72f5",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "e6452559-52f7-42bc-91fe-39acf2e5f9e9"
         }
     ],
+    "groups": [],
     "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
     "uuid": "1293d73e-3770-470c-a194-46638b405e2a",
     "owners": [],

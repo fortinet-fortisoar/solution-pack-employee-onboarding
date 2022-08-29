@@ -34,16 +34,13 @@
         "Onboarding",
         "Offboarding"
     ],
-    "fsrMinCompatibility": "7.2.1",
-    "date": "2022-06-29T14:31:27+00:00",
+    "fsrMinCompatibility": "7.2.0",
+    "date": "2022-08-29T12:07:12+00:00",
     "contents": {
-        "viewTemplates": {
+        "modules": {
             "scenario": {
                 "name": "Scenario",
-                "apiName": "scenario",
-                "views": [
-                    "list"
-                ]
+                "apiName": "scenario"
             }
         },
         "playbooks": [
@@ -53,28 +50,22 @@
         ],
         "globalVariables": [
             {
-                "id": 34,
+                "id": 39,
+                "name": "Demo_mode",
+                "value": "true",
+                "default_value": "true"
+            },
+            {
+                "id": 37,
                 "name": "EOF_DB_User",
                 "value": "jstuart",
                 "default_value": "jstuart"
             },
             {
-                "id": 35,
+                "id": 38,
                 "name": "EOF_SYS_User",
                 "value": "bfoghali",
                 "default_value": "bfoghali"
-            },
-            {
-                "id": 20,
-                "name": "Demo_mode",
-                "value": "true",
-                "default_value": "true"
-            }
-        ],
-        "connectors": [
-            {
-                "name": "FortiSOAR SOC Simulator",
-                "apiName": "fortisoar-soc-simulator"
             }
         ],
         "recordSets": [

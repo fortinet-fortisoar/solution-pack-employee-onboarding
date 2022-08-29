@@ -1,6 +1,6 @@
 {
     "@context": "\/api\/3\/contexts\/StagingModelMetadata",
-    "@id": "\/api\/3\/staging_model_metadatas\/9b5dd903-4ec9-4e1e-b440-8156b4fb0af6",
+    "@id": "\/api\/3\/staging_model_metadatas\/cdb79ed8-682f-454f-8f2d-d60f01febf56",
     "@type": "StagingModelMetadata",
     "type": "scenario",
     "parentType": null,
@@ -298,7 +298,7 @@
         "delete_primary_data_after": 60
     },
     "archivalFilters": [],
-    "uuid": "9b5dd903-4ec9-4e1e-b440-8156b4fb0af6",
+    "uuid": "cdb79ed8-682f-454f-8f2d-d60f01febf56",
     "displayName": "{{ title }}",
     "descriptions": {
         "singular": "Scenario",
