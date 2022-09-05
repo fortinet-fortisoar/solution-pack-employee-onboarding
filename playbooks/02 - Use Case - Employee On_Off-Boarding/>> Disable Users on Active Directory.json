@@ -13,7 +13,7 @@
         "parameters"
     ],
     "synchronous": false,
-    "collection": "\/api\/3\/workflow_collections\/160d414b-d1d2-44a6-ab10-0df6b1f694fd",
+    "collection": "\/api\/3\/workflow_collections\/b6f9f97f-bc7b-4bfd-8215-b22388c5931a",
     "versions": [],
     "triggerStep": "\/api\/3\/workflow_steps\/4eb77089-1253-4335-bd87-e32271d6392f",
     "steps": [
@@ -25,7 +25,7 @@
                 "op_status": "{{vars.steps.Disable_user.data.description}}"
             },
             "status": null,
-            "top": "300",
+            "top": "435",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
@@ -50,11 +50,25 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "165",
+            "top": "300",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "group": null,
             "uuid": "300f3460-685d-43f2-a14f-9e43022cfcb0"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "useMockOutput": "{{globalVars.Demo_mode}}"
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "4297ebfe-6bc1-422c-803a-02f22a8c90cb"
         },
         {
             "@type": "WorkflowStep",
@@ -64,8 +78,7 @@
                 "step_variables": {
                     "input": {
                         "params": []
-                    },
-                    "useMockOutput": "{{globalVars.Demo_mode}}"
+                    }
                 }
             },
             "status": null,
@@ -79,21 +92,30 @@
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Start -> Disable user",
-            "targetStep": "\/api\/3\/workflow_steps\/300f3460-685d-43f2-a14f-9e43022cfcb0",
-            "sourceStep": "\/api\/3\/workflow_steps\/4eb77089-1253-4335-bd87-e32271d6392f",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "0c4e4111-cae1-4c9e-b737-c8341238a6a3"
-        },
-        {
-            "@type": "WorkflowRoute",
             "name": "Disable user -> Data Output",
             "targetStep": "\/api\/3\/workflow_steps\/2b8748bb-5ec9-4cbf-b193-e6fdf4988f38",
             "sourceStep": "\/api\/3\/workflow_steps\/300f3460-685d-43f2-a14f-9e43022cfcb0",
             "label": null,
             "isExecuted": false,
             "uuid": "245b06f7-7f5b-47ae-9641-e992791d5181"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Disable user",
+            "targetStep": "\/api\/3\/workflow_steps\/300f3460-685d-43f2-a14f-9e43022cfcb0",
+            "sourceStep": "\/api\/3\/workflow_steps\/4297ebfe-6bc1-422c-803a-02f22a8c90cb",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "cdf5d68f-d967-4a15-908e-42b21579362d"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/4297ebfe-6bc1-422c-803a-02f22a8c90cb",
+            "sourceStep": "\/api\/3\/workflow_steps\/4eb77089-1253-4335-bd87-e32271d6392f",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "de04982c-81f8-49f3-836f-6f7d57166aa5"
         }
     ],
     "groups": [],

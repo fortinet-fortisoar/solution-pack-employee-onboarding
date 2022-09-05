@@ -13,7 +13,7 @@
         "username"
     ],
     "synchronous": false,
-    "collection": "\/api\/3\/workflow_collections\/160d414b-d1d2-44a6-ab10-0df6b1f694fd",
+    "collection": "\/api\/3\/workflow_collections\/b6f9f97f-bc7b-4bfd-8215-b22388c5931a",
     "versions": [],
     "triggerStep": "\/api\/3\/workflow_steps\/ce51227c-9260-4f25-a5a2-c44a3a9fa5f2",
     "steps": [
@@ -38,11 +38,25 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "165",
+            "top": "300",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "group": null,
             "uuid": "0cd5d2d8-59a8-4bd4-aa96-fe196df674ac"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "useMockOutput": "{{globalVars.Demo_mode}}"
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "41b8f157-d5cb-41ea-aded-250b52fcd0c8"
         },
         {
             "@type": "WorkflowStep",
@@ -52,8 +66,7 @@
                 "step_variables": {
                     "input": {
                         "params": []
-                    },
-                    "useMockOutput": "{{globalVars.Demo_mode}}"
+                    }
                 }
             },
             "status": null,
@@ -67,12 +80,21 @@
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Start -> Create MailBox",
+            "name": "Configuration -> Create MailBox",
             "targetStep": "\/api\/3\/workflow_steps\/0cd5d2d8-59a8-4bd4-aa96-fe196df674ac",
+            "sourceStep": "\/api\/3\/workflow_steps\/41b8f157-d5cb-41ea-aded-250b52fcd0c8",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "b4229542-dd18-4b2c-a172-267f86b8fc10"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/41b8f157-d5cb-41ea-aded-250b52fcd0c8",
             "sourceStep": "\/api\/3\/workflow_steps\/ce51227c-9260-4f25-a5a2-c44a3a9fa5f2",
             "label": null,
             "isExecuted": false,
-            "uuid": "e84ceca1-204f-4023-80c1-2102d193bfc8"
+            "uuid": "fb33a8fb-8621-48f3-8404-696a24c5a30b"
         }
     ],
     "groups": [],

@@ -1,0 +1,471 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Scenario - Employee On\/Off Boarding",
+    "aliasName": null,
+    "tag": null,
+    "description": "Request to Onboard\/Offboard user of SysAdmin\/DbAdmin",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/b6f9f97f-bc7b-4bfd-8215-b22388c5931a",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/26cfd84e-85be-467a-bad7-5020fff3a75a",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Wait For DbAdmin Offboard",
+            "description": null,
+            "arguments": {
+                "rule": {
+                    "actions": [
+                        {
+                            "type": "resume_playbook",
+                            "enabled": true,
+                            "channel_uuid": "e2ce87c2-c55a-11ec-9d64-0242ac120002"
+                        }
+                    ],
+                    "is_active": true,
+                    "event_source": "crudhub"
+                },
+                "type": "TimeBased",
+                "delay": {
+                    "days": 0,
+                    "hours": 0,
+                    "weeks": 0,
+                    "minutes": 0,
+                    "seconds": 10
+                }
+            },
+            "status": null,
+            "top": "975",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/6832e556-b9c7-497a-babe-feda3bd27dbf",
+            "group": null,
+            "uuid": "15934da7-63a0-41ea-8375-89ef09ad9081"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Wait For SysAdmin Offboard",
+            "description": null,
+            "arguments": {
+                "rule": {
+                    "actions": [
+                        {
+                            "type": "resume_playbook",
+                            "enabled": true,
+                            "channel_uuid": "e2ce87c2-c55a-11ec-9d64-0242ac120002"
+                        }
+                    ],
+                    "is_active": true,
+                    "event_source": "crudhub"
+                },
+                "type": "TimeBased",
+                "delay": {
+                    "days": 0,
+                    "hours": 0,
+                    "weeks": 0,
+                    "minutes": 0,
+                    "seconds": 10
+                }
+            },
+            "status": null,
+            "top": "435",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/6832e556-b9c7-497a-babe-feda3bd27dbf",
+            "group": null,
+            "uuid": "1b314067-93fd-492e-b4de-9d73ca770db8"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "26cfd84e-85be-467a-bad7-5020fff3a75a"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "SysAdmin Onboard",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "name": "User << {{vars.sysUser}} >> Onboarding",
+                    "type": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82",
+                    "state": "\/api\/3\/picklists\/501d0562-89a0-4079-9a9e-cdde7d34e3ed",
+                    "source": "HR",
+                    "status": "\/api\/3\/picklists\/7de816ff-7140-4ee5-bd05-93ce22002146",
+                    "emailTo": "fortisoar Dropbox <fortisoar@fortielab.com>",
+                    "fileHash": "NA",
+                    "severity": "\/api\/3\/picklists\/b3c20a3a-ecfd-4adc-a225-0205968e6793",
+                    "__replace": "",
+                    "emailBody": "<p><html xmlns:o=\"urn:schemas-microsoft-com:office:office\" xmlns:w=\"urn:schemas-microsoft-com:office:word\" xmlns:m=\"http:\/\/schemas.microsoft.com\/office\/2004\/12\/omml\" xmlns=\"http:\/\/www.w3.org\/TR\/REC-html40\">\r\n<head>\r\n<meta http-equiv=\"Content-Type\" content=\"text\/html; charset=utf-8\">\r\n<meta name=\"Generator\" content=\"Microsoft Word 15 (filtered medium)\">\r\n<style><!--\r\n\/* Font Definitions *\/\r\n@font-face\r\n\t{font-family:\"Cambria Math\";\r\n\tpanose-1:2 4 5 3 5 4 6 3 2 4;}\r\n@font-face\r\n\t{font-family:Calibri;\r\n\tpanose-1:2 15 5 2 2 2 4 3 2 4;}\r\n\/* Style Definitions *\/\r\np.MsoNormal, li.MsoNormal, div.MsoNormal\r\n\t{margin:0in;\r\n\tfont-size:11.0pt;\r\n\tfont-family:\"Calibri\",sans-serif;}\r\na:link, span.MsoHyperlink\r\n\t{mso-style-priority:99;\r\n\tcolor:blue;\r\n\ttext-decoration:underline;}\r\np.MsoPlainText, li.MsoPlainText, div.MsoPlainText\r\n\t{mso-style-priority:99;\r\n\tmso-style-link:\"Plain Text Char\";\r\n\tmargin:0in;\r\n\tfont-size:11.0pt;\r\n\tfont-family:\"Calibri\",sans-serif;}\r\nspan.PlainTextChar\r\n\t{mso-style-name:\"Plain Text Char\";\r\n\tmso-style-priority:99;\r\n\tmso-style-link:\"Plain Text\";\r\n\tfont-family:\"Calibri\",sans-serif;}\r\n.MsoChpDefault\r\n\t{mso-style-type:export-only;}\r\n@page WordSection1\r\n\t{size:8.5in 11.0in;\r\n\tmargin:1.0in 1.0in 1.0in 1.0in;}\r\ndiv.WordSection1\r\n\t{page:WordSection1;}\r\n--><\/style>\r\n<\/head>\r\n<body lang=\"EN-US\" link=\"blue\" vlink=\"#954F72\" style=\"word-wrap:break-word\">\r\n<div class=\"WordSection1\">\r\n<p class=\"MsoNormal\">Username: {{vars.sysUser}}<o:p><\/o:p><\/p>\r\n<p class=\"MsoPlainText\">Group: sysadmins<\/p>\r\n<p class=\"MsoPlainText\">Title: Analyst<\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\">Sent from <a href=\"https:\/\/go.microsoft.com\/fwlink\/?LinkId=550986\">\r\nMail<\/a> for Windows<o:p><\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<\/div>\r\n<\/body>\r\n<\/html>\r\n<\/p>",
+                    "emailFrom": "adam smith <asmith@fortielab.com>",
+                    "fileNames": "NA",
+                    "assignedTo": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+                    "recordTags": [],
+                    "sourcedata": "{\"body\": {\"html\": \"<html xmlns:o=\\\"urn:schemas-microsoft-com:office:office\\\" xmlns:w=\\\"urn:schemas-microsoft-com:office:word\\\" xmlns:m=\\\"http:\/\/schemas.microsoft.com\/office\/2004\/12\/omml\\\" xmlns=\\\"http:\/\/www.w3.org\/TR\/REC-html40\\\">\\r\\n<head>\\r\\n<meta http-equiv=\\\"Content-Type\\\" content=\\\"text\/html; charset=utf-8\\\">\\r\\n<meta name=\\\"Generator\\\" content=\\\"Microsoft Word 15 (filtered medium)\\\">\\r\\n<style><!--\\r\\n\/* Font Definitions *\/\\r\\n@font-face\\r\\n\\t{font-family:\\\"Cambria Math\\\";\\r\\n\\tpanose-1:2 4 5 3 5 4 6 3 2 4;}\\r\\n@font-face\\r\\n\\t{font-family:Calibri;\\r\\n\\tpanose-1:2 15 5 2 2 2 4 3 2 4;}\\r\\n\/* Style Definitions *\/\\r\\np.MsoNormal, li.MsoNormal, div.MsoNormal\\r\\n\\t{margin:0in;\\r\\n\\tfont-size:11.0pt;\\r\\n\\tfont-family:\\\"Calibri\\\",sans-serif;}\\r\\na:link, span.MsoHyperlink\\r\\n\\t{mso-style-priority:99;\\r\\n\\tcolor:blue;\\r\\n\\ttext-decoration:underline;}\\r\\np.MsoPlainText, li.MsoPlainText, div.MsoPlainText\\r\\n\\t{mso-style-priority:99;\\r\\n\\tmso-style-link:\\\"Plain Text Char\\\";\\r\\n\\tmargin:0in;\\r\\n\\tfont-size:11.0pt;\\r\\n\\tfont-family:\\\"Calibri\\\",sans-serif;}\\r\\nspan.PlainTextChar\\r\\n\\t{mso-style-name:\\\"Plain Text Char\\\";\\r\\n\\tmso-style-priority:99;\\r\\n\\tmso-style-link:\\\"Plain Text\\\";\\r\\n\\tfont-family:\\\"Calibri\\\",sans-serif;}\\r\\n.MsoChpDefault\\r\\n\\t{mso-style-type:export-only;}\\r\\n@page WordSection1\\r\\n\\t{size:8.5in 11.0in;\\r\\n\\tmargin:1.0in 1.0in 1.0in 1.0in;}\\r\\ndiv.WordSection1\\r\\n\\t{page:WordSection1;}\\r\\n--><\/style>\\r\\n<\/head>\\r\\n<body lang=\\\"EN-US\\\" link=\\\"blue\\\" vlink=\\\"#954F72\\\" style=\\\"word-wrap:break-word\\\">\\r\\n<div class=\\\"WordSection1\\\">\\r\\n<p class=\\\"MsoNormal\\\">Username: {{vars.sysUser}}<o:p><\/o:p><\/p>\\r\\n<p class=\\\"MsoPlainText\\\">Group: Engineering<\/p>\\r\\n<p class=\\\"MsoPlainText\\\">Title: Analyst<\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\">Sent from <a href=\\\"https:\/\/go.microsoft.com\/fwlink\/?LinkId=550986\\\">\\r\\nMail<\/a> for Windows<o:p><\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<\/div>\\r\\n<\/body>\\r\\n<\/html>\\r\\n\", \"json\": null, \"text\": \"Username: {{vars.sysUser}}\\r\\n\\r\\nGroup: Engineering\\r\\n\\r\\nTitle: Analyst\\r\\n\\r\\n\\r\\nSent from Mail<https:\/\/go.microsoft.com\/fwlink\/?LinkId=550986> for Windows\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\"}, \"headers\": {\"to\": \"fortisoar Dropbox <fortisoar@fortielab.com>\", \"date\": \"Fri, 11 Mar 2022 09:18:07 +0000\", \"from\": \"adam smith <asmith@fortielab.com>\", \"subject\": \"RE: User Onboarding\", \"received\": \"from Exch19.fortielab.com ([::1]) by Exch19.fortielab.com ([::1]) with mapi id 15.02.0529.005; Fri, 11 Mar 2022 10:18:07 +0100\", \"message-id\": \"<8670ed23e58f4b589db1145f57e00aae@fortielab.com>\", \"content-type\": \"multipart\/alternative; boundary=\\\"_000_8670ed23e58f4b589db1145f57e00aaefortielabcom_\\\"\", \"mime-version\": \"1.0\", \"thread-index\": \"AQHYNSjrDrUXzWuj3Um5BMJeEmhRGg==\", \"thread-topic\": \"User Onboarding\", \"content-class\": \"urn:content-classes:message\", \"accept-language\": \"en-US\", \"x-ms-has-attach\": \"\", \"content-language\": \"en-US\", \"x-ms-tnef-correlator\": \"\", \"x-ms-exchange-organization-scl\": \"-1\", \"x-ms-exchange-organization-authas\": \"Internal\", \"x-ms-exchange-organization-authsource\": \"Exch19.fortielab.com\", \"x-ms-exchange-organization-authmechanism\": \"04\", \"x-ms-exchange-organization-network-message-id\": \"\\t0130c3c0-1e68-444e-4be5-08da03400e03\", \"x-ms-exchange-organization-recordreviewcfmtype\": \"0\"}, \"item_id\": \"AAMkAGIzZTk5N2NjLWZlZmEtNGM4MC1iOTY2LTAxZTNkNmQzNzczNwBGAAAAAAATZZSNqv5+QqxD7zZUKWXYBwA0F7Tfz0PDQorTMRX2YwNHAAAAAAEMAAA0F7Tfz0PDQorTMRX2YwNHAAD0o2P\/AAA=\", \"epilogue\": \"\", \"preamble\": \"\", \"attachments\": [], \"folder_path\": \"\/root\/Top of Information Store\/Inbox\", \"attachment_files\": [], \"extract_attach_data\": true, \"parsed_attachment_data\": []}",
+                    "ackSlaStatus": "\/api\/3\/picklists\/72979f64-e8b9-4888-a965-957e0ec24818",
+                    "assigneddate": 1,
+                    "emailHeaders": "{% set emailHeader = {\"to\": \"fortisoar Dropbox <fortisoar@fortielab.com>\", \"date\": \"Fri, 11 Mar 2022 09:18:07 +0000\", \"from\": \"adam smith <asmith@fortielab.com>\", \"subject\": \"RE: User Onboarding\", \"received\": \"from Exch19.fortielab.com ([::1]) by Exch19.fortielab.com ([::1]) with mapi id 15.02.0529.005; Fri, 11 Mar 2022 10:18:07 +0100\", \"message-id\": \"<8670ed23e58f4b589db1145f57e00aae@fortielab.com>\", \"content-type\": \"multipart\/alternative; boundary=\\\"_000_8670ed23e58f4b589db1145f57e00aaefortielabcom_\\\"\", \"mime-version\": \"1.0\", \"thread-index\": \"AQHYNSjrDrUXzWuj3Um5BMJeEmhRGg==\", \"thread-topic\": \"User Onboarding\", \"content-class\": \"urn:content-classes:message\", \"accept-language\": \"en-US\", \"x-ms-has-attach\": \"\", \"content-language\": \"en-US\", \"x-ms-tnef-correlator\": \"\", \"x-ms-exchange-organization-scl\": \"-1\", \"x-ms-exchange-organization-authas\": \"Internal\", \"x-ms-exchange-organization-authsource\": \"Exch19.fortielab.com\", \"x-ms-exchange-organization-authmechanism\": \"04\", \"x-ms-exchange-organization-network-message-id\": \"\\t0130c3c0-1e68-444e-4be5-08da03400e03\", \"x-ms-exchange-organization-recordreviewcfmtype\": \"0\"} %}{{ emailHeader | toJSON }}",
+                    "emailSubject": "User << {{vars.sysUser}} >> Onboarding",
+                    "senderDomain": "fortielab.com",
+                    "respSlaStatus": "\/api\/3\/picklists\/72979f64-e8b9-4888-a965-957e0ec24818",
+                    "priorityWeight": 1,
+                    "reporterEmailBody": "<p><\/p>",
+                    "senderEmailAddress": "adam smith <asmith@fortielab.com>",
+                    "escalatedtoincident": "\/api\/3\/picklists\/2128a09c-153d-4db3-985d-de6be33deae5",
+                    "alertRemainingAckSLA": 0,
+                    "recipientEmailAddress": "fortisoar Dropbox <fortisoar@fortielab.com>"
+                },
+                "_showJson": false,
+                "operation": "Overwrite",
+                "collection": "\/api\/3\/alerts",
+                "__recommend": [],
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": {
+                    "__dummy": "{{vars.alertList.append(vars.result['@id'])}}"
+                }
+            },
+            "status": null,
+            "top": "300",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
+            "group": null,
+            "uuid": "4948bc41-64f2-438d-9140-fcc59f1b2b87"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "SysAdmin Offboard",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "name": "User << {{vars.sysUser}} >> Offboarding",
+                    "type": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82",
+                    "dueBy": 1,
+                    "state": "\/api\/3\/picklists\/501d0562-89a0-4079-9a9e-cdde7d34e3ed",
+                    "source": "HR",
+                    "status": "\/api\/3\/picklists\/7de816ff-7140-4ee5-bd05-93ce22002146",
+                    "emailTo": "fortisoar Dropbox <fortisoar@fortielab.com>",
+                    "fileHash": "NA",
+                    "severity": "\/api\/3\/picklists\/b3c20a3a-ecfd-4adc-a225-0205968e6793",
+                    "__replace": "",
+                    "emailBody": "<p><html xmlns:o=\"urn:schemas-microsoft-com:office:office\" xmlns:w=\"urn:schemas-microsoft-com:office:word\" xmlns:m=\"http:\/\/schemas.microsoft.com\/office\/2004\/12\/omml\" xmlns=\"http:\/\/www.w3.org\/TR\/REC-html40\">\r\n<head>\r\n<meta http-equiv=\"Content-Type\" content=\"text\/html; charset=utf-8\">\r\n<meta name=\"Generator\" content=\"Microsoft Word 15 (filtered medium)\">\r\n<style><!--\r\n\/* Font Definitions *\/\r\n@font-face\r\n\t{font-family:\"Cambria Math\";\r\n\tpanose-1:2 4 5 3 5 4 6 3 2 4;}\r\n@font-face\r\n\t{font-family:Calibri;\r\n\tpanose-1:2 15 5 2 2 2 4 3 2 4;}\r\n\/* Style Definitions *\/\r\np.MsoNormal, li.MsoNormal, div.MsoNormal\r\n\t{margin:0in;\r\n\tfont-size:11.0pt;\r\n\tfont-family:\"Calibri\",sans-serif;}\r\na:link, span.MsoHyperlink\r\n\t{mso-style-priority:99;\r\n\tcolor:blue;\r\n\ttext-decoration:underline;}\r\np.MsoPlainText, li.MsoPlainText, div.MsoPlainText\r\n\t{mso-style-priority:99;\r\n\tmso-style-link:\"Plain Text Char\";\r\n\tmargin:0in;\r\n\tfont-size:11.0pt;\r\n\tfont-family:\"Calibri\",sans-serif;}\r\nspan.PlainTextChar\r\n\t{mso-style-name:\"Plain Text Char\";\r\n\tmso-style-priority:99;\r\n\tmso-style-link:\"Plain Text\";\r\n\tfont-family:\"Calibri\",sans-serif;}\r\n.MsoChpDefault\r\n\t{mso-style-type:export-only;}\r\n@page WordSection1\r\n\t{size:8.5in 11.0in;\r\n\tmargin:1.0in 1.0in 1.0in 1.0in;}\r\ndiv.WordSection1\r\n\t{page:WordSection1;}\r\n--><\/style>\r\n<\/head>\r\n<body lang=\"EN-US\" link=\"blue\" vlink=\"#954F72\" style=\"word-wrap:break-word\">\r\n<div class=\"WordSection1\">\r\n<p class=\"MsoNormal\">Username: {{vars.sysUser}}<o:p><\/o:p><\/p>\r\n<p class=\"MsoPlainText\">Group: sysadmins<\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\">Sent from <a href=\"https:\/\/go.microsoft.com\/fwlink\/?LinkId=550986\">\r\nMail<\/a> for Windows<o:p><\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<\/div>\r\n<\/body>\r\n<\/html>\r\n<\/p>",
+                    "emailFrom": "adam smith <asmith@fortielab.com>",
+                    "fileNames": "NA",
+                    "assignedTo": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+                    "recordTags": [],
+                    "sourcedata": "{\"body\": {\"html\": \"<html xmlns:o=\\\"urn:schemas-microsoft-com:office:office\\\" xmlns:w=\\\"urn:schemas-microsoft-com:office:word\\\" xmlns:m=\\\"http:\/\/schemas.microsoft.com\/office\/2004\/12\/omml\\\" xmlns=\\\"http:\/\/www.w3.org\/TR\/REC-html40\\\">\\r\\n<head>\\r\\n<meta http-equiv=\\\"Content-Type\\\" content=\\\"text\/html; charset=utf-8\\\">\\r\\n<meta name=\\\"Generator\\\" content=\\\"Microsoft Word 15 (filtered medium)\\\">\\r\\n<style><!--\\r\\n\/* Font Definitions *\/\\r\\n@font-face\\r\\n\\t{font-family:\\\"Cambria Math\\\";\\r\\n\\tpanose-1:2 4 5 3 5 4 6 3 2 4;}\\r\\n@font-face\\r\\n\\t{font-family:Calibri;\\r\\n\\tpanose-1:2 15 5 2 2 2 4 3 2 4;}\\r\\n\/* Style Definitions *\/\\r\\np.MsoNormal, li.MsoNormal, div.MsoNormal\\r\\n\\t{margin:0in;\\r\\n\\tfont-size:11.0pt;\\r\\n\\tfont-family:\\\"Calibri\\\",sans-serif;}\\r\\na:link, span.MsoHyperlink\\r\\n\\t{mso-style-priority:99;\\r\\n\\tcolor:blue;\\r\\n\\ttext-decoration:underline;}\\r\\np.MsoPlainText, li.MsoPlainText, div.MsoPlainText\\r\\n\\t{mso-style-priority:99;\\r\\n\\tmso-style-link:\\\"Plain Text Char\\\";\\r\\n\\tmargin:0in;\\r\\n\\tfont-size:11.0pt;\\r\\n\\tfont-family:\\\"Calibri\\\",sans-serif;}\\r\\nspan.PlainTextChar\\r\\n\\t{mso-style-name:\\\"Plain Text Char\\\";\\r\\n\\tmso-style-priority:99;\\r\\n\\tmso-style-link:\\\"Plain Text\\\";\\r\\n\\tfont-family:\\\"Calibri\\\",sans-serif;}\\r\\n.MsoChpDefault\\r\\n\\t{mso-style-type:export-only;}\\r\\n@page WordSection1\\r\\n\\t{size:8.5in 11.0in;\\r\\n\\tmargin:1.0in 1.0in 1.0in 1.0in;}\\r\\ndiv.WordSection1\\r\\n\\t{page:WordSection1;}\\r\\n--><\/style>\\r\\n<\/head>\\r\\n<body lang=\\\"EN-US\\\" link=\\\"blue\\\" vlink=\\\"#954F72\\\" style=\\\"word-wrap:break-word\\\">\\r\\n<div class=\\\"WordSection1\\\">\\r\\n<p class=\\\"MsoNormal\\\">Username: {{vars.sysUser}}<o:p><\/o:p><\/p>\\r\\n<p class=\\\"MsoPlainText\\\">Group: Engineering<\/p>\\r\\n<p class=\\\"MsoPlainText\\\">Title: Analyst<\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\">Sent from <a href=\\\"https:\/\/go.microsoft.com\/fwlink\/?LinkId=550986\\\">\\r\\nMail<\/a> for Windows<o:p><\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<\/div>\\r\\n<\/body>\\r\\n<\/html>\\r\\n\", \"json\": null, \"text\": \"Username: {{vars.sysUser}}\\r\\n\\r\\nGroup: Engineering\\r\\n\\r\\nTitle: Analyst\\r\\n\\r\\n\\r\\nSent from Mail<https:\/\/go.microsoft.com\/fwlink\/?LinkId=550986> for Windows\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\"}, \"headers\": {\"to\": \"fortisoar Dropbox <fortisoar@fortielab.com>\", \"date\": \"Fri, 11 Mar 2022 09:18:07 +0000\", \"from\": \"adam smith <asmith@fortielab.com>\", \"subject\": \"RE: User Offboarding\", \"received\": \"from Exch19.fortielab.com ([::1]) by Exch19.fortielab.com ([::1]) with mapi id 15.02.0529.005; Fri, 11 Mar 2022 10:18:07 +0100\", \"message-id\": \"<8670ed23e58f4b589db1145f57e00aae@fortielab.com>\", \"content-type\": \"multipart\/alternative; boundary=\\\"_000_8670ed23e58f4b589db1145f57e00aaefortielabcom_\\\"\", \"mime-version\": \"1.0\", \"thread-index\": \"AQHYNSjrDrUXzWuj3Um5BMJeEmhRGg==\", \"thread-topic\": \"User Offboarding\", \"content-class\": \"urn:content-classes:message\", \"accept-language\": \"en-US\", \"x-ms-has-attach\": \"\", \"content-language\": \"en-US\", \"x-ms-tnef-correlator\": \"\", \"x-ms-exchange-organization-scl\": \"-1\", \"x-ms-exchange-organization-authas\": \"Internal\", \"x-ms-exchange-organization-authsource\": \"Exch19.fortielab.com\", \"x-ms-exchange-organization-authmechanism\": \"04\", \"x-ms-exchange-organization-network-message-id\": \"\\t0130c3c0-1e68-444e-4be5-08da03400e03\", \"x-ms-exchange-organization-recordreviewcfmtype\": \"0\"}, \"item_id\": \"AAMkAGIzZTk5N2NjLWZlZmEtNGM4MC1iOTY2LTAxZTNkNmQzNzczNwBGAAAAAAATZZSNqv5+QqxD7zZUKWXYBwA0F7Tfz0PDQorTMRX2YwNHAAAAAAEMAAA0F7Tfz0PDQorTMRX2YwNHAAD0o2P\/AAA=\", \"epilogue\": \"\", \"preamble\": \"\", \"attachments\": [], \"folder_path\": \"\/root\/Top of Information Store\/Inbox\", \"attachment_files\": [], \"extract_attach_data\": true, \"parsed_attachment_data\": []}",
+                    "respDueDate": 1,
+                    "ackSlaStatus": "\/api\/3\/picklists\/72979f64-e8b9-4888-a965-957e0ec24818",
+                    "assigneddate": 1,
+                    "emailHeaders": "{% set emailHeader = {\"to\": \"fortisoar Dropbox <fortisoar@fortielab.com>\", \"date\": \"Fri, 11 Mar 2022 09:18:07 +0000\", \"from\": \"adam smith <asmith@fortielab.com>\", \"subject\": \"RE: User Offboarding\", \"received\": \"from Exch19.fortielab.com ([::1]) by Exch19.fortielab.com ([::1]) with mapi id 15.02.0529.005; Fri, 11 Mar 2022 10:18:07 +0100\", \"message-id\": \"<8670ed23e58f4b589db1145f57e00aae@fortielab.com>\", \"content-type\": \"multipart\/alternative; boundary=\\\"_000_8670ed23e58f4b589db1145f57e00aaefortielabcom_\\\"\", \"mime-version\": \"1.0\", \"thread-index\": \"AQHYNSjrDrUXzWuj3Um5BMJeEmhRGg==\", \"thread-topic\": \"User Offboarding\", \"content-class\": \"urn:content-classes:message\", \"accept-language\": \"en-US\", \"x-ms-has-attach\": \"\", \"content-language\": \"en-US\", \"x-ms-tnef-correlator\": \"\", \"x-ms-exchange-organization-scl\": \"-1\", \"x-ms-exchange-organization-authas\": \"Internal\", \"x-ms-exchange-organization-authsource\": \"Exch19.fortielab.com\", \"x-ms-exchange-organization-authmechanism\": \"04\", \"x-ms-exchange-organization-network-message-id\": \"\\t0130c3c0-1e68-444e-4be5-08da03400e03\", \"x-ms-exchange-organization-recordreviewcfmtype\": \"0\"} %} {{ emailHeader | toJSON }}",
+                    "emailSubject": "User << {{vars.sysUser}} >> Offboarding",
+                    "senderDomain": "fortielab.com",
+                    "respSlaStatus": "\/api\/3\/picklists\/72979f64-e8b9-4888-a965-957e0ec24818",
+                    "priorityWeight": 1,
+                    "reporterEmailBody": "<p><\/p>",
+                    "alertDetectionDate": 1,
+                    "senderEmailAddress": "adam smith <asmith@fortielab.com>",
+                    "escalatedtoincident": "\/api\/3\/picklists\/2128a09c-153d-4db3-985d-de6be33deae5",
+                    "alertRemainingAckSLA": 0,
+                    "recipientEmailAddress": "fortisoar Dropbox <fortisoar@fortielab.com>"
+                },
+                "_showJson": false,
+                "operation": "Overwrite",
+                "collection": "\/api\/3\/alerts",
+                "__recommend": [],
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": {
+                    "__dummy": "{{vars.alertList.append(vars.result['@id'])}}"
+                }
+            },
+            "status": null,
+            "top": "570",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
+            "group": null,
+            "uuid": "5204f175-4ab4-4880-8986-cfb1bb5552ef"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "DbAdmin Onboard",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "name": "User << {{vars.dbUser}} >> Onboarding",
+                    "type": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82",
+                    "dueBy": 1,
+                    "state": "\/api\/3\/picklists\/501d0562-89a0-4079-9a9e-cdde7d34e3ed",
+                    "source": "HR",
+                    "status": "\/api\/3\/picklists\/7de816ff-7140-4ee5-bd05-93ce22002146",
+                    "emailTo": "fortisoar Dropbox <fortisoar@fortielab.com>",
+                    "fileHash": "NA",
+                    "severity": "\/api\/3\/picklists\/b3c20a3a-ecfd-4adc-a225-0205968e6793",
+                    "__replace": "",
+                    "emailBody": "<p><html xmlns:o=\"urn:schemas-microsoft-com:office:office\" xmlns:w=\"urn:schemas-microsoft-com:office:word\" xmlns:m=\"http:\/\/schemas.microsoft.com\/office\/2004\/12\/omml\" xmlns=\"http:\/\/www.w3.org\/TR\/REC-html40\">\r\n<head>\r\n<meta http-equiv=\"Content-Type\" content=\"text\/html; charset=utf-8\">\r\n<meta name=\"Generator\" content=\"Microsoft Word 15 (filtered medium)\">\r\n<style><!--\r\n\/* Font Definitions *\/\r\n@font-face\r\n\t{font-family:\"Cambria Math\";\r\n\tpanose-1:2 4 5 3 5 4 6 3 2 4;}\r\n@font-face\r\n\t{font-family:Calibri;\r\n\tpanose-1:2 15 5 2 2 2 4 3 2 4;}\r\n\/* Style Definitions *\/\r\np.MsoNormal, li.MsoNormal, div.MsoNormal\r\n\t{margin:0in;\r\n\tfont-size:11.0pt;\r\n\tfont-family:\"Calibri\",sans-serif;}\r\na:link, span.MsoHyperlink\r\n\t{mso-style-priority:99;\r\n\tcolor:blue;\r\n\ttext-decoration:underline;}\r\np.MsoPlainText, li.MsoPlainText, div.MsoPlainText\r\n\t{mso-style-priority:99;\r\n\tmso-style-link:\"Plain Text Char\";\r\n\tmargin:0in;\r\n\tfont-size:11.0pt;\r\n\tfont-family:\"Calibri\",sans-serif;}\r\nspan.PlainTextChar\r\n\t{mso-style-name:\"Plain Text Char\";\r\n\tmso-style-priority:99;\r\n\tmso-style-link:\"Plain Text\";\r\n\tfont-family:\"Calibri\",sans-serif;}\r\n.MsoChpDefault\r\n\t{mso-style-type:export-only;}\r\n@page WordSection1\r\n\t{size:8.5in 11.0in;\r\n\tmargin:1.0in 1.0in 1.0in 1.0in;}\r\ndiv.WordSection1\r\n\t{page:WordSection1;}\r\n--><\/style>\r\n<\/head>\r\n<body lang=\"EN-US\" link=\"blue\" vlink=\"#954F72\" style=\"word-wrap:break-word\">\r\n<div class=\"WordSection1\">\r\n<p class=\"MsoNormal\">Username: {{vars.dbUser}}<o:p><\/o:p><\/p>\r\n<p class=\"MsoPlainText\">Group: dbadmins<\/p>\r\n<p class=\"MsoPlainText\">Title: Analyst<\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\">Sent from <a href=\"https:\/\/go.microsoft.com\/fwlink\/?LinkId=550986\">\r\nMail<\/a> for Windows<o:p><\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<\/div>\r\n<\/body>\r\n<\/html>\r\n<\/p>",
+                    "emailFrom": "adam smith <asmith@fortielab.com>",
+                    "fileNames": "NA",
+                    "assignedTo": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+                    "recordTags": [],
+                    "sourcedata": "{\"body\": {\"html\": \"<html xmlns:o=\\\"urn:schemas-microsoft-com:office:office\\\" xmlns:w=\\\"urn:schemas-microsoft-com:office:word\\\" xmlns:m=\\\"http:\/\/schemas.microsoft.com\/office\/2004\/12\/omml\\\" xmlns=\\\"http:\/\/www.w3.org\/TR\/REC-html40\\\">\\r\\n<head>\\r\\n<meta http-equiv=\\\"Content-Type\\\" content=\\\"text\/html; charset=utf-8\\\">\\r\\n<meta name=\\\"Generator\\\" content=\\\"Microsoft Word 15 (filtered medium)\\\">\\r\\n<style><!--\\r\\n\/* Font Definitions *\/\\r\\n@font-face\\r\\n\\t{font-family:\\\"Cambria Math\\\";\\r\\n\\tpanose-1:2 4 5 3 5 4 6 3 2 4;}\\r\\n@font-face\\r\\n\\t{font-family:Calibri;\\r\\n\\tpanose-1:2 15 5 2 2 2 4 3 2 4;}\\r\\n\/* Style Definitions *\/\\r\\np.MsoNormal, li.MsoNormal, div.MsoNormal\\r\\n\\t{margin:0in;\\r\\n\\tfont-size:11.0pt;\\r\\n\\tfont-family:\\\"Calibri\\\",sans-serif;}\\r\\na:link, span.MsoHyperlink\\r\\n\\t{mso-style-priority:99;\\r\\n\\tcolor:blue;\\r\\n\\ttext-decoration:underline;}\\r\\np.MsoPlainText, li.MsoPlainText, div.MsoPlainText\\r\\n\\t{mso-style-priority:99;\\r\\n\\tmso-style-link:\\\"Plain Text Char\\\";\\r\\n\\tmargin:0in;\\r\\n\\tfont-size:11.0pt;\\r\\n\\tfont-family:\\\"Calibri\\\",sans-serif;}\\r\\nspan.PlainTextChar\\r\\n\\t{mso-style-name:\\\"Plain Text Char\\\";\\r\\n\\tmso-style-priority:99;\\r\\n\\tmso-style-link:\\\"Plain Text\\\";\\r\\n\\tfont-family:\\\"Calibri\\\",sans-serif;}\\r\\n.MsoChpDefault\\r\\n\\t{mso-style-type:export-only;}\\r\\n@page WordSection1\\r\\n\\t{size:8.5in 11.0in;\\r\\n\\tmargin:1.0in 1.0in 1.0in 1.0in;}\\r\\ndiv.WordSection1\\r\\n\\t{page:WordSection1;}\\r\\n--><\/style>\\r\\n<\/head>\\r\\n<body lang=\\\"EN-US\\\" link=\\\"blue\\\" vlink=\\\"#954F72\\\" style=\\\"word-wrap:break-word\\\">\\r\\n<div class=\\\"WordSection1\\\">\\r\\n<p class=\\\"MsoNormal\\\">Username: {{vars.dbUser}}<o:p><\/o:p><\/p>\\r\\n<p class=\\\"MsoPlainText\\\">Group: Engineering<\/p>\\r\\n<p class=\\\"MsoPlainText\\\">Title: Analyst<\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\">Sent from <a href=\\\"https:\/\/go.microsoft.com\/fwlink\/?LinkId=550986\\\">\\r\\nMail<\/a> for Windows<o:p><\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<\/div>\\r\\n<\/body>\\r\\n<\/html>\\r\\n\", \"json\": null, \"text\": \"Username: {{vars.dbUser}}\\r\\n\\r\\nGroup: Engineering\\r\\n\\r\\nTitle: Analyst\\r\\n\\r\\n\\r\\nSent from Mail<https:\/\/go.microsoft.com\/fwlink\/?LinkId=550986> for Windows\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\"}, \"headers\": {\"to\": \"fortisoar Dropbox <fortisoar@fortielab.com>\", \"date\": \"Fri, 11 Mar 2022 09:18:07 +0000\", \"from\": \"adam smith <asmith@fortielab.com>\", \"subject\": \"RE: User Onboarding\", \"received\": \"from Exch19.fortielab.com ([::1]) by Exch19.fortielab.com ([::1]) with mapi id 15.02.0529.005; Fri, 11 Mar 2022 10:18:07 +0100\", \"message-id\": \"<8670ed23e58f4b589db1145f57e00aae@fortielab.com>\", \"content-type\": \"multipart\/alternative; boundary=\\\"_000_8670ed23e58f4b589db1145f57e00aaefortielabcom_\\\"\", \"mime-version\": \"1.0\", \"thread-index\": \"AQHYNSjrDrUXzWuj3Um5BMJeEmhRGg==\", \"thread-topic\": \"User Onboarding\", \"content-class\": \"urn:content-classes:message\", \"accept-language\": \"en-US\", \"x-ms-has-attach\": \"\", \"content-language\": \"en-US\", \"x-ms-tnef-correlator\": \"\", \"x-ms-exchange-organization-scl\": \"-1\", \"x-ms-exchange-organization-authas\": \"Internal\", \"x-ms-exchange-organization-authsource\": \"Exch19.fortielab.com\", \"x-ms-exchange-organization-authmechanism\": \"04\", \"x-ms-exchange-organization-network-message-id\": \"\\t0130c3c0-1e68-444e-4be5-08da03400e03\", \"x-ms-exchange-organization-recordreviewcfmtype\": \"0\"}, \"item_id\": \"AAMkAGIzZTk5N2NjLWZlZmEtNGM4MC1iOTY2LTAxZTNkNmQzNzczNwBGAAAAAAATZZSNqv5+QqxD7zZUKWXYBwA0F7Tfz0PDQorTMRX2YwNHAAAAAAEMAAA0F7Tfz0PDQorTMRX2YwNHAAD0o2P\/AAA=\", \"epilogue\": \"\", \"preamble\": \"\", \"attachments\": [], \"folder_path\": \"\/root\/Top of Information Store\/Inbox\", \"attachment_files\": [], \"extract_attach_data\": true, \"parsed_attachment_data\": []}",
+                    "respDueDate": 1,
+                    "ackSlaStatus": "\/api\/3\/picklists\/72979f64-e8b9-4888-a965-957e0ec24818",
+                    "assigneddate": 1,
+                    "emailHeaders": "{% set emailHeader = {\"to\": \"fortisoar Dropbox <fortisoar@fortielab.com>\", \"date\": \"Fri, 11 Mar 2022 09:18:07 +0000\", \"from\": \"adam smith <asmith@fortielab.com>\", \"subject\": \"RE: User Onboarding\", \"received\": \"from Exch19.fortielab.com ([::1]) by Exch19.fortielab.com ([::1]) with mapi id 15.02.0529.005; Fri, 11 Mar 2022 10:18:07 +0100\", \"message-id\": \"<8670ed23e58f4b589db1145f57e00aae@fortielab.com>\", \"content-type\": \"multipart\/alternative; boundary=\\\"_000_8670ed23e58f4b589db1145f57e00aaefortielabcom_\\\"\", \"mime-version\": \"1.0\", \"thread-index\": \"AQHYNSjrDrUXzWuj3Um5BMJeEmhRGg==\", \"thread-topic\": \"User Onboarding\", \"content-class\": \"urn:content-classes:message\", \"accept-language\": \"en-US\", \"x-ms-has-attach\": \"\", \"content-language\": \"en-US\", \"x-ms-tnef-correlator\": \"\", \"x-ms-exchange-organization-scl\": \"-1\", \"x-ms-exchange-organization-authas\": \"Internal\", \"x-ms-exchange-organization-authsource\": \"Exch19.fortielab.com\", \"x-ms-exchange-organization-authmechanism\": \"04\", \"x-ms-exchange-organization-network-message-id\": \"\\t0130c3c0-1e68-444e-4be5-08da03400e03\", \"x-ms-exchange-organization-recordreviewcfmtype\": \"0\"} %} {{ emailHeader | toJSON }}",
+                    "emailSubject": "User << {{vars.dbUser}} >> Onboarding",
+                    "senderDomain": "fortielab.com",
+                    "respSlaStatus": "\/api\/3\/picklists\/72979f64-e8b9-4888-a965-957e0ec24818",
+                    "priorityWeight": 1,
+                    "reporterEmailBody": "<p><\/p>",
+                    "alertDetectionDate": 1,
+                    "senderEmailAddress": "adam smith <asmith@fortielab.com>",
+                    "escalatedtoincident": "\/api\/3\/picklists\/2128a09c-153d-4db3-985d-de6be33deae5",
+                    "alertRemainingAckSLA": 0,
+                    "recipientEmailAddress": "fortisoar Dropbox <fortisoar@fortielab.com>"
+                },
+                "_showJson": false,
+                "operation": "Overwrite",
+                "collection": "\/api\/3\/alerts",
+                "__recommend": [],
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": {
+                    "__dummy": "{{vars.alertList.append(vars.result['@id'])}}"
+                }
+            },
+            "status": null,
+            "top": "840",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
+            "group": null,
+            "uuid": "695f4f01-9fed-4b4e-aa5b-4eda1abba119"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Output",
+            "description": null,
+            "arguments": {
+                "@id": "{{vars.alertList}}"
+            },
+            "status": null,
+            "top": "1245",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "b5e97977-f5fe-4702-99c1-add899083c97"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "DbAdmin Offboard",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "name": "User << {{vars.dbUser}} >> Offboarding",
+                    "type": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82",
+                    "dueBy": 1646,
+                    "state": "\/api\/3\/picklists\/501d0562-89a0-4079-9a9e-cdde7d34e3ed",
+                    "source": "HR",
+                    "status": "\/api\/3\/picklists\/7de816ff-7140-4ee5-bd05-93ce22002146",
+                    "emailTo": "fortisoar Dropbox <fortisoar@fortielab.com>",
+                    "fileHash": "NA",
+                    "severity": "\/api\/3\/picklists\/b3c20a3a-ecfd-4adc-a225-0205968e6793",
+                    "__replace": "",
+                    "emailBody": "<p><html xmlns:o=\"urn:schemas-microsoft-com:office:office\" xmlns:w=\"urn:schemas-microsoft-com:office:word\" xmlns:m=\"http:\/\/schemas.microsoft.com\/office\/2004\/12\/omml\" xmlns=\"http:\/\/www.w3.org\/TR\/REC-html40\">\r\n<head>\r\n<meta http-equiv=\"Content-Type\" content=\"text\/html; charset=utf-8\">\r\n<meta name=\"Generator\" content=\"Microsoft Word 15 (filtered medium)\">\r\n<style><!--\r\n\/* Font Definitions *\/\r\n@font-face\r\n\t{font-family:\"Cambria Math\";\r\n\tpanose-1:2 4 5 3 5 4 6 3 2 4;}\r\n@font-face\r\n\t{font-family:Calibri;\r\n\tpanose-1:2 15 5 2 2 2 4 3 2 4;}\r\n\/* Style Definitions *\/\r\np.MsoNormal, li.MsoNormal, div.MsoNormal\r\n\t{margin:0in;\r\n\tfont-size:11.0pt;\r\n\tfont-family:\"Calibri\",sans-serif;}\r\na:link, span.MsoHyperlink\r\n\t{mso-style-priority:99;\r\n\tcolor:blue;\r\n\ttext-decoration:underline;}\r\np.MsoPlainText, li.MsoPlainText, div.MsoPlainText\r\n\t{mso-style-priority:99;\r\n\tmso-style-link:\"Plain Text Char\";\r\n\tmargin:0in;\r\n\tfont-size:11.0pt;\r\n\tfont-family:\"Calibri\",sans-serif;}\r\nspan.PlainTextChar\r\n\t{mso-style-name:\"Plain Text Char\";\r\n\tmso-style-priority:99;\r\n\tmso-style-link:\"Plain Text\";\r\n\tfont-family:\"Calibri\",sans-serif;}\r\n.MsoChpDefault\r\n\t{mso-style-type:export-only;}\r\n@page WordSection1\r\n\t{size:8.5in 11.0in;\r\n\tmargin:1.0in 1.0in 1.0in 1.0in;}\r\ndiv.WordSection1\r\n\t{page:WordSection1;}\r\n--><\/style>\r\n<\/head>\r\n<body lang=\"EN-US\" link=\"blue\" vlink=\"#954F72\" style=\"word-wrap:break-word\">\r\n<div class=\"WordSection1\">\r\n<p class=\"MsoNormal\">Username: {{vars.dbUser}}<o:p><\/o:p><\/p>\r\n<p class=\"MsoPlainText\">Group: dbadmins<\/p>\r\n<o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\">Sent from <a href=\"https:\/\/go.microsoft.com\/fwlink\/?LinkId=550986\">\r\nMail<\/a> for Windows<o:p><\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<p class=\"MsoNormal\"><o:p>&nbsp;<\/o:p><\/p>\r\n<\/div>\r\n<\/body>\r\n<\/html>\r\n<\/p>",
+                    "emailFrom": "adam smith <asmith@fortielab.com>",
+                    "fileNames": "NA",
+                    "assignedTo": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+                    "recordTags": [],
+                    "sourcedata": "{\"body\": {\"html\": \"<html xmlns:o=\\\"urn:schemas-microsoft-com:office:office\\\" xmlns:w=\\\"urn:schemas-microsoft-com:office:word\\\" xmlns:m=\\\"http:\/\/schemas.microsoft.com\/office\/2004\/12\/omml\\\" xmlns=\\\"http:\/\/www.w3.org\/TR\/REC-html40\\\">\\r\\n<head>\\r\\n<meta http-equiv=\\\"Content-Type\\\" content=\\\"text\/html; charset=utf-8\\\">\\r\\n<meta name=\\\"Generator\\\" content=\\\"Microsoft Word 15 (filtered medium)\\\">\\r\\n<style><!--\\r\\n\/* Font Definitions *\/\\r\\n@font-face\\r\\n\\t{font-family:\\\"Cambria Math\\\";\\r\\n\\tpanose-1:2 4 5 3 5 4 6 3 2 4;}\\r\\n@font-face\\r\\n\\t{font-family:Calibri;\\r\\n\\tpanose-1:2 15 5 2 2 2 4 3 2 4;}\\r\\n\/* Style Definitions *\/\\r\\np.MsoNormal, li.MsoNormal, div.MsoNormal\\r\\n\\t{margin:0in;\\r\\n\\tfont-size:11.0pt;\\r\\n\\tfont-family:\\\"Calibri\\\",sans-serif;}\\r\\na:link, span.MsoHyperlink\\r\\n\\t{mso-style-priority:99;\\r\\n\\tcolor:blue;\\r\\n\\ttext-decoration:underline;}\\r\\np.MsoPlainText, li.MsoPlainText, div.MsoPlainText\\r\\n\\t{mso-style-priority:99;\\r\\n\\tmso-style-link:\\\"Plain Text Char\\\";\\r\\n\\tmargin:0in;\\r\\n\\tfont-size:11.0pt;\\r\\n\\tfont-family:\\\"Calibri\\\",sans-serif;}\\r\\nspan.PlainTextChar\\r\\n\\t{mso-style-name:\\\"Plain Text Char\\\";\\r\\n\\tmso-style-priority:99;\\r\\n\\tmso-style-link:\\\"Plain Text\\\";\\r\\n\\tfont-family:\\\"Calibri\\\",sans-serif;}\\r\\n.MsoChpDefault\\r\\n\\t{mso-style-type:export-only;}\\r\\n@page WordSection1\\r\\n\\t{size:8.5in 11.0in;\\r\\n\\tmargin:1.0in 1.0in 1.0in 1.0in;}\\r\\ndiv.WordSection1\\r\\n\\t{page:WordSection1;}\\r\\n--><\/style>\\r\\n<\/head>\\r\\n<body lang=\\\"EN-US\\\" link=\\\"blue\\\" vlink=\\\"#954F72\\\" style=\\\"word-wrap:break-word\\\">\\r\\n<div class=\\\"WordSection1\\\">\\r\\n<p class=\\\"MsoNormal\\\">Username: {{vars.dbUser}}<o:p><\/o:p><\/p>\\r\\n<p class=\\\"MsoPlainText\\\">Group: Engineering<\/p>\\r\\n<p class=\\\"MsoPlainText\\\">Title: Analyst<\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\">Sent from <a href=\\\"https:\/\/go.microsoft.com\/fwlink\/?LinkId=550986\\\">\\r\\nMail<\/a> for Windows<o:p><\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<p class=\\\"MsoNormal\\\"><o:p>&nbsp;<\/o:p><\/p>\\r\\n<\/div>\\r\\n<\/body>\\r\\n<\/html>\\r\\n\", \"json\": null, \"text\": \"Username: {{vars.dbUser}}\\r\\n\\r\\nGroup: Engineering\\r\\n\\r\\nTitle: Analyst\\r\\n\\r\\n\\r\\nSent from Mail<https:\/\/go.microsoft.com\/fwlink\/?LinkId=550986> for Windows\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\"}, \"headers\": {\"to\": \"fortisoar Dropbox <fortisoar@fortielab.com>\", \"date\": \"Fri, 11 Mar 2022 09:18:07 +0000\", \"from\": \"adam smith <asmith@fortielab.com>\", \"subject\": \"RE: User Offboarding\", \"received\": \"from Exch19.fortielab.com ([::1]) by Exch19.fortielab.com ([::1]) with mapi id 15.02.0529.005; Fri, 11 Mar 2022 10:18:07 +0100\", \"message-id\": \"<8670ed23e58f4b589db1145f57e00aae@fortielab.com>\", \"content-type\": \"multipart\/alternative; boundary=\\\"_000_8670ed23e58f4b589db1145f57e00aaefortielabcom_\\\"\", \"mime-version\": \"1.0\", \"thread-index\": \"AQHYNSjrDrUXzWuj3Um5BMJeEmhRGg==\", \"thread-topic\": \"User Offboarding\", \"content-class\": \"urn:content-classes:message\", \"accept-language\": \"en-US\", \"x-ms-has-attach\": \"\", \"content-language\": \"en-US\", \"x-ms-tnef-correlator\": \"\", \"x-ms-exchange-organization-scl\": \"-1\", \"x-ms-exchange-organization-authas\": \"Internal\", \"x-ms-exchange-organization-authsource\": \"Exch19.fortielab.com\", \"x-ms-exchange-organization-authmechanism\": \"04\", \"x-ms-exchange-organization-network-message-id\": \"\\t0130c3c0-1e68-444e-4be5-08da03400e03\", \"x-ms-exchange-organization-recordreviewcfmtype\": \"0\"}, \"item_id\": \"AAMkAGIzZTk5N2NjLWZlZmEtNGM4MC1iOTY2LTAxZTNkNmQzNzczNwBGAAAAAAATZZSNqv5+QqxD7zZUKWXYBwA0F7Tfz0PDQorTMRX2YwNHAAAAAAEMAAA0F7Tfz0PDQorTMRX2YwNHAAD0o2P\/AAA=\", \"epilogue\": \"\", \"preamble\": \"\", \"attachments\": [], \"folder_path\": \"\/root\/Top of Information Store\/Inbox\", \"attachment_files\": [], \"extract_attach_data\": true, \"parsed_attachment_data\": []}",
+                    "respDueDate": 1646,
+                    "ackSlaStatus": "\/api\/3\/picklists\/72979f64-e8b9-4888-a965-957e0ec24818",
+                    "assigneddate": 1646,
+                    "emailHeaders": "{% set emailHeader = {\"to\": \"fortisoar Dropbox <fortisoar@fortielab.com>\", \"date\": \"Fri, 11 Mar 2022 09:18:07 +0000\", \"from\": \"adam smith <asmith@fortielab.com>\", \"subject\": \"RE: User Offboarding\", \"received\": \"from Exch19.fortielab.com ([::1]) by Exch19.fortielab.com ([::1]) with mapi id 15.02.0529.005; Fri, 11 Mar 2022 10:18:07 +0100\", \"message-id\": \"<8670ed23e58f4b589db1145f57e00aae@fortielab.com>\", \"content-type\": \"multipart\/alternative; boundary=\\\"_000_8670ed23e58f4b589db1145f57e00aaefortielabcom_\\\"\", \"mime-version\": \"1.0\", \"thread-index\": \"AQHYNSjrDrUXzWuj3Um5BMJeEmhRGg==\", \"thread-topic\": \"User Offboarding\", \"content-class\": \"urn:content-classes:message\", \"accept-language\": \"en-US\", \"x-ms-has-attach\": \"\", \"content-language\": \"en-US\", \"x-ms-tnef-correlator\": \"\", \"x-ms-exchange-organization-scl\": \"-1\", \"x-ms-exchange-organization-authas\": \"Internal\", \"x-ms-exchange-organization-authsource\": \"Exch19.fortielab.com\", \"x-ms-exchange-organization-authmechanism\": \"04\", \"x-ms-exchange-organization-network-message-id\": \"\\t0130c3c0-1e68-444e-4be5-08da03400e03\", \"x-ms-exchange-organization-recordreviewcfmtype\": \"0\"} %} {{ emailHeader | toJSON }}",
+                    "emailSubject": "User << {{vars.dbUser}} >> Offboarding",
+                    "senderDomain": "fortielab.com",
+                    "respSlaStatus": "\/api\/3\/picklists\/72979f64-e8b9-4888-a965-957e0ec24818",
+                    "priorityWeight": 1,
+                    "reporterEmailBody": "<p><\/p>",
+                    "alertDetectionDate": 1646,
+                    "senderEmailAddress": "adam smith <asmith@fortielab.com>",
+                    "escalatedtoincident": "\/api\/3\/picklists\/2128a09c-153d-4db3-985d-de6be33deae5",
+                    "alertRemainingAckSLA": 0,
+                    "recipientEmailAddress": "fortisoar Dropbox <fortisoar@fortielab.com>"
+                },
+                "_showJson": false,
+                "operation": "Overwrite",
+                "collection": "\/api\/3\/alerts",
+                "__recommend": [],
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": {
+                    "__dummy": "{{vars.alertList.append(vars.result['@id'])}}"
+                }
+            },
+            "status": null,
+            "top": "1110",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
+            "group": null,
+            "uuid": "b88130e9-9fd6-4819-9b86-289e400ae2a7"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Wait For DbAdmin Onboard",
+            "description": null,
+            "arguments": {
+                "rule": {
+                    "actions": [
+                        {
+                            "type": "resume_playbook",
+                            "enabled": true,
+                            "channel_uuid": "e2ce87c2-c55a-11ec-9d64-0242ac120002"
+                        }
+                    ],
+                    "is_active": true,
+                    "event_source": "crudhub"
+                },
+                "type": "TimeBased",
+                "delay": {
+                    "days": 0,
+                    "hours": 0,
+                    "weeks": 0,
+                    "minutes": 0,
+                    "seconds": 10
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "705",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/6832e556-b9c7-497a-babe-feda3bd27dbf",
+            "group": null,
+            "uuid": "cbf3c591-8d35-450a-99e1-6f36e0fca74c"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "dbUser": "{{ \"jstuart\" }}",
+                "sysUser": "{{ \"bfoghali\" }}",
+                "alertList": "[]"
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "e9202b6b-63f1-4fad-9a65-b52b93fd4b4c"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "SysAdmin Offboard -> Wait DbAdmin Onboard",
+            "targetStep": "\/api\/3\/workflow_steps\/cbf3c591-8d35-450a-99e1-6f36e0fca74c",
+            "sourceStep": "\/api\/3\/workflow_steps\/5204f175-4ab4-4880-8986-cfb1bb5552ef",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "0b5961fe-98a2-4494-add5-18dd366d89d2"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Wait For DbAdmin Onboard -> DbAdmin Onboard",
+            "targetStep": "\/api\/3\/workflow_steps\/695f4f01-9fed-4b4e-aa5b-4eda1abba119",
+            "sourceStep": "\/api\/3\/workflow_steps\/cbf3c591-8d35-450a-99e1-6f36e0fca74c",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "22bf09b1-bf98-4610-a5e7-b65215cdfdc8"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Delay For Record Creation -> SysAdmin Offboard",
+            "targetStep": "\/api\/3\/workflow_steps\/5204f175-4ab4-4880-8986-cfb1bb5552ef",
+            "sourceStep": "\/api\/3\/workflow_steps\/1b314067-93fd-492e-b4de-9d73ca770db8",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "33a597af-c8c2-4b91-b104-df66ee7c1480"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "DbAdmin Offboard -> Output",
+            "targetStep": "\/api\/3\/workflow_steps\/b5e97977-f5fe-4702-99c1-add899083c97",
+            "sourceStep": "\/api\/3\/workflow_steps\/b88130e9-9fd6-4819-9b86-289e400ae2a7",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "6e248d57-cfd2-4b8b-8600-b8dfdf9709a4"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/e9202b6b-63f1-4fad-9a65-b52b93fd4b4c",
+            "sourceStep": "\/api\/3\/workflow_steps\/26cfd84e-85be-467a-bad7-5020fff3a75a",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "88555f09-eff7-4331-a0dc-582859a2fe35"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "DbAdmin Onboard -> Wait For DbAdmin Offboard",
+            "targetStep": "\/api\/3\/workflow_steps\/15934da7-63a0-41ea-8375-89ef09ad9081",
+            "sourceStep": "\/api\/3\/workflow_steps\/695f4f01-9fed-4b4e-aa5b-4eda1abba119",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "db6dc68e-4a70-4eba-b0ff-c6cc5cbb33d8"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Wait For DbAdmin Offboard -> DbAdmin Offboard",
+            "targetStep": "\/api\/3\/workflow_steps\/b88130e9-9fd6-4819-9b86-289e400ae2a7",
+            "sourceStep": "\/api\/3\/workflow_steps\/15934da7-63a0-41ea-8375-89ef09ad9081",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "e0b8e532-c2c5-49b8-9bb1-4c24c82b6178"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> SysAdmin Onboard",
+            "targetStep": "\/api\/3\/workflow_steps\/4948bc41-64f2-438d-9140-fcc59f1b2b87",
+            "sourceStep": "\/api\/3\/workflow_steps\/e9202b6b-63f1-4fad-9a65-b52b93fd4b4c",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "f6bd8f60-6099-493b-9e0b-c89467553d1c"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "SysAdmin Onboard -> Delay For Record Creation",
+            "targetStep": "\/api\/3\/workflow_steps\/1b314067-93fd-492e-b4de-9d73ca770db8",
+            "sourceStep": "\/api\/3\/workflow_steps\/4948bc41-64f2-438d-9140-fcc59f1b2b87",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "fb7baeb0-e583-4e21-8c22-c2d73d2232e9"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "20f182d6-47a4-457c-a00e-de542c88e25d",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": []
+}

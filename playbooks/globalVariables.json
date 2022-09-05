@@ -1,20 +1,8 @@
 [
     {
-        "id": 39,
+        "id": 29,
         "name": "Demo_mode",
         "value": "true",
         "default_value": "true"
-    },
-    {
-        "id": 37,
-        "name": "EOF_DB_User",
-        "value": "jstuart",
-        "default_value": "jstuart"
-    },
-    {
-        "id": 38,
-        "name": "EOF_SYS_User",
-        "value": "bfoghali",
-        "default_value": "bfoghali"
     }
 ]

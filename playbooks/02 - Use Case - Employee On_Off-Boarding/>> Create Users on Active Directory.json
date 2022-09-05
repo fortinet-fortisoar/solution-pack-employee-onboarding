@@ -13,7 +13,7 @@
         "parameters"
     ],
     "synchronous": false,
-    "collection": "\/api\/3\/workflow_collections\/160d414b-d1d2-44a6-ab10-0df6b1f694fd",
+    "collection": "\/api\/3\/workflow_collections\/b6f9f97f-bc7b-4bfd-8215-b22388c5931a",
     "versions": [],
     "triggerStep": "\/api\/3\/workflow_steps\/ab5765a7-3315-40d0-b56f-dbccab7ae710",
     "steps": [
@@ -32,8 +32,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "700",
-            "left": "100",
+            "top": "705",
+            "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "00789a0f-d596-4470-ab6a-b6693267d480"
@@ -65,8 +65,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "700",
-            "left": "500",
+            "top": "705",
+            "left": "475",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "group": null,
             "uuid": "0b6eb54c-d384-480c-9d21-05ef15d30069"
@@ -78,13 +78,13 @@
             "arguments": {
                 "conditions": [
                     {
-                        "option": "no",
+                        "option": "No",
                         "step_iri": "\/api\/3\/workflow_steps\/0b6eb54c-d384-480c-9d21-05ef15d30069",
                         "condition": "{{ vars.steps.Get_User_Details.data.entries | length == 0 }}",
                         "step_name": "Create AD Account"
                     },
                     {
-                        "option": "yes",
+                        "option": "Yes",
                         "default": true,
                         "step_iri": "\/api\/3\/workflow_steps\/00789a0f-d596-4470-ab6a-b6693267d480",
                         "step_name": "User Already Exists"
@@ -131,7 +131,9 @@
             "name": "Configuration",
             "description": null,
             "arguments": {
+                "_tmp": "",
                 "user_dn": "CN={{vars.input.params.parameters.username}},CN=Users,DC=fortielab,DC=com",
+                "useMockOutput": "{{globalVars.Demo_mode}}",
                 "user_password": "{%set u_table=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']%}{%set l_table=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']%}{%set s_table=['-','_','#','%']%}{% for n in range(4) %}{{u_table[range(1, 26) | random]}}{{l_table[range(1, 26) | random]}}{{s_table[range(1, 7) | random]}}{{range(1000, 9999) | random|string}}{% endfor %}"
             },
             "status": null,
@@ -172,11 +174,9 @@
             "description": null,
             "arguments": {
                 "step_variables": {
-                    "_tmp": "",
                     "input": {
                         "params": []
-                    },
-                    "useMockOutput": "{{globalVars.Demo_mode}}"
+                    }
                 }
             },
             "status": null,
@@ -206,8 +206,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "980",
-            "left": "500",
+            "top": "975",
+            "left": "475",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "group": null,
             "uuid": "d3a15dd1-30c9-41a2-8fab-16bb37453085"
@@ -233,7 +233,7 @@
             },
             "status": null,
             "top": "840",
-            "left": "500",
+            "left": "475",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "group": null,
             "uuid": "dd4bb125-cb54-4303-ba7f-25db2fba5bc0"
@@ -250,8 +250,8 @@
                 "user_password": "{{vars.user_password}}"
             },
             "status": null,
-            "top": "1120",
-            "left": "500",
+            "top": "1110",
+            "left": "475",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
             "uuid": "f04ae9c3-e8cc-43f9-9729-3d9695803c25"
@@ -263,7 +263,7 @@
             "name": "User Exists -> User Already Exists",
             "targetStep": "\/api\/3\/workflow_steps\/00789a0f-d596-4470-ab6a-b6693267d480",
             "sourceStep": "\/api\/3\/workflow_steps\/2e633cd4-d11d-453f-bf9a-e3d4aa9dbc3e",
-            "label": "yes",
+            "label": "Yes",
             "isExecuted": false,
             "uuid": "08363fef-637a-476e-b570-6123fa07677a"
         },
@@ -272,7 +272,7 @@
             "name": "User Exists -> Create AD Account",
             "targetStep": "\/api\/3\/workflow_steps\/0b6eb54c-d384-480c-9d21-05ef15d30069",
             "sourceStep": "\/api\/3\/workflow_steps\/2e633cd4-d11d-453f-bf9a-e3d4aa9dbc3e",
-            "label": "no",
+            "label": "No",
             "isExecuted": false,
             "uuid": "22e45d29-6e2f-4e36-9df1-8291ba4b267a"
         },

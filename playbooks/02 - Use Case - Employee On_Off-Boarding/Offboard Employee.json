@@ -11,7 +11,7 @@
     "remoteExecutableFlag": false,
     "parameters": [],
     "synchronous": false,
-    "collection": "\/api\/3\/workflow_collections\/160d414b-d1d2-44a6-ab10-0df6b1f694fd",
+    "collection": "\/api\/3\/workflow_collections\/b6f9f97f-bc7b-4bfd-8215-b22388c5931a",
     "versions": [],
     "triggerStep": "\/api\/3\/workflow_steps\/3dc57c06-5920-4a98-a17c-9aeea3b96aa7",
     "steps": [
@@ -23,8 +23,8 @@
                 "disabled_services": "{%if vars.provisioned_services|length > 0%} {%set tmp_list=vars.provisioned_services|json_query('[].data[][\"Server FQDN\"][]')%} {{tmp_list|join('<br \/>')}} {%endif%}"
             },
             "status": null,
-            "top": "1100",
-            "left": "500",
+            "top": "1110",
+            "left": "475",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
             "uuid": "0a85e913-c3d5-4438-8b0f-0d8dc4c477d7"
@@ -51,8 +51,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "680",
-            "left": "100",
+            "top": "705",
+            "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "1bed063c-78e3-43b2-9f6c-2481f154254b"
@@ -91,8 +91,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1240",
-            "left": "500",
+            "top": "1245",
+            "left": "475",
             "stepType": "\/api\/3\/workflow_step_types\/4c0019b2-055c-44d0-968c-678a0c2d762e",
             "group": null,
             "uuid": "3490006e-740f-4b10-bc97-10c0608dd660"
@@ -112,9 +112,7 @@
                         "records": [
                             "{{vars.input.records[0]}}"
                         ]
-                    },
-                    "useMockOutput": "{{globalVars.Demo_mode}}",
-                    "target_services_playbooks_iris": "[]"
+                    }
                 },
                 "fieldbasedtrigger": {
                     "sort": [],
@@ -204,8 +202,8 @@
                 "workflowReference": "\/api\/3\/workflows\/8304f11f-7dbd-441d-8017-b9e248b17c5b"
             },
             "status": null,
-            "top": "820",
-            "left": "500",
+            "top": "840",
+            "left": "475",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
             "uuid": "65dcf24c-1bfb-4d05-9342-57007507bcbf"
@@ -217,13 +215,13 @@
             "arguments": {
                 "conditions": [
                     {
-                        "option": "no",
+                        "option": "No",
                         "default": true,
                         "step_iri": "\/api\/3\/workflow_steps\/1bed063c-78e3-43b2-9f6c-2481f154254b",
                         "step_name": "Group Does Not Exist"
                     },
                     {
-                        "option": "yes",
+                        "option": "Yes",
                         "step_iri": "\/api\/3\/workflow_steps\/f3b7568b-dd41-4f61-8750-6beec0faa6ef",
                         "condition": "{{ vars.group_definition.0.attributes.info|length > 0 }}",
                         "step_name": "Compute Eligible Services List"
@@ -265,8 +263,8 @@
                 "workflowReference": "{{vars.item}}"
             },
             "status": null,
-            "top": "960",
-            "left": "500",
+            "top": "975",
+            "left": "475",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
             "uuid": "8334b1ed-e611-4c69-849e-a4a6d3451626"
@@ -293,7 +291,9 @@
             "arguments": {
                 "group": "{{vars.input.records[0].emailBody|regex_search('(?<=Group:\\s)[a-z-A-z0-9.]+')}}",
                 "username": "{{vars.input.records[0].emailBody|regex_search('(?<=Username:\\s)[a-z-A-z0-9.]+')}}",
-                "mail_from": "{{vars.input.records[0].emailFrom|regex_search(\"[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+\")}}"
+                "mail_from": "{{vars.input.records[0].emailFrom|regex_search(\"[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+\")}}",
+                "useMockOutput": "{{globalVars.Demo_mode}}",
+                "target_services_playbooks_iris": "[]"
             },
             "status": null,
             "top": "165",
@@ -310,8 +310,8 @@
                 "__build_pb_iri_list": "{%set tmp_uuids=vars.group_definition.0.attributes.info.split(',')%}\n{%for entry in tmp_uuids%}\n{{vars.target_services_playbooks_iris.append('\/api\/3\/workflows\/{}'.format(entry))}}\n{%endfor%}"
             },
             "status": null,
-            "top": "680",
-            "left": "500",
+            "top": "705",
+            "left": "475",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
             "uuid": "f3b7568b-dd41-4f61-8750-6beec0faa6ef"
@@ -332,7 +332,7 @@
             "name": "Group Exists -> Group Does Not Exist",
             "targetStep": "\/api\/3\/workflow_steps\/1bed063c-78e3-43b2-9f6c-2481f154254b",
             "sourceStep": "\/api\/3\/workflow_steps\/830e924a-71e6-4e43-889d-c2adb4954034",
-            "label": "no",
+            "label": "No",
             "isExecuted": false,
             "uuid": "28f9c1ad-1391-4dd7-87dd-d9be964197a2"
         },
@@ -377,7 +377,7 @@
             "name": "Group Exists -> Compute Eligible Services List",
             "targetStep": "\/api\/3\/workflow_steps\/f3b7568b-dd41-4f61-8750-6beec0faa6ef",
             "sourceStep": "\/api\/3\/workflow_steps\/830e924a-71e6-4e43-889d-c2adb4954034",
-            "label": "yes",
+            "label": "Yes",
             "isExecuted": false,
             "uuid": "8cb7ce04-d18d-4611-97d7-c1f9c634b58b"
         },

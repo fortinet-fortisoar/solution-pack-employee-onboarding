@@ -1,6 +1,6 @@
 {
     "@context": "\/api\/3\/contexts\/StagingModelMetadata",
-    "@id": "\/api\/3\/staging_model_metadatas\/cdb79ed8-682f-454f-8f2d-d60f01febf56",
+    "@id": "\/api\/3\/staging_model_metadatas\/3d6ed6a1-0f2e-4b2f-ba70-b89131ae816e",
     "@type": "StagingModelMetadata",
     "type": "scenario",
     "parentType": null,
@@ -16,51 +16,6 @@
     "indexable": true,
     "writable": true,
     "attributes": [
-        {
-            "@id": "\/api\/3\/attribute_metadatas\/74592051-a86c-42f0-befc-fb73ef7f29fa",
-            "@type": "AttributeMetadata",
-            "type": "object",
-            "name": "steps",
-            "length": 0,
-            "orderIndex": 4,
-            "formType": "object",
-            "dataSource": [],
-            "searchable": false,
-            "peerReplicable": true,
-            "system": false,
-            "encrypted": false,
-            "gridColumn": false,
-            "collection": false,
-            "inversedField": null,
-            "ownsRelationship": false,
-            "validation": {
-                "required": true,
-                "minlength": 0,
-                "maxlength": 10485761
-            },
-            "bulkAction": {
-                "allow": false,
-                "buttonText": "",
-                "buttonIcon": "",
-                "buttonClass": "btn btn-default btn-sm"
-            },
-            "dataSourceFilters": [],
-            "defaultValue": null,
-            "tooltip": "define the steps of use case in the prescribed format",
-            "visibility": true,
-            "htmlEscape": false,
-            "orphanRemoval": false,
-            "readable": true,
-            "writeable": true,
-            "identifier": false,
-            "unique": false,
-            "recommend": false,
-            "uuid": "74592051-a86c-42f0-befc-fb73ef7f29fa",
-            "displayName": "{{ steps }}",
-            "descriptions": {
-                "singular": "Steps"
-            }
-        },
         {
             "@id": "\/api\/3\/attribute_metadatas\/840d94ab-51b8-4782-ab37-5b0bdbfcbf69",
             "@type": "AttributeMetadata",
@@ -285,6 +240,51 @@
             "descriptions": {
                 "singular": "Created Alerts ID"
             }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/74592051-a86c-42f0-befc-fb73ef7f29fa",
+            "@type": "AttributeMetadata",
+            "type": "object",
+            "name": "steps",
+            "length": 0,
+            "orderIndex": 4,
+            "formType": "object",
+            "dataSource": [],
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "required": true,
+                "minlength": 0,
+                "maxlength": 10485761
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonText": "",
+                "buttonIcon": "",
+                "buttonClass": "btn btn-default btn-sm"
+            },
+            "dataSourceFilters": [],
+            "defaultValue": null,
+            "tooltip": "define the steps of use case in the prescribed format",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "uuid": "74592051-a86c-42f0-befc-fb73ef7f29fa",
+            "displayName": "{{ steps }}",
+            "descriptions": {
+                "singular": "Steps"
+            }
         }
     ],
     "system": false,
@@ -298,7 +298,7 @@
         "delete_primary_data_after": 60
     },
     "archivalFilters": [],
-    "uuid": "cdb79ed8-682f-454f-8f2d-d60f01febf56",
+    "uuid": "3d6ed6a1-0f2e-4b2f-ba70-b89131ae816e",
     "displayName": "{{ title }}",
     "descriptions": {
         "singular": "Scenario",

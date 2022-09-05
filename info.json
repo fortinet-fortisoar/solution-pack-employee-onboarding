@@ -9,7 +9,7 @@
             "name": "sOARFramework",
             "type": "solutionpack",
             "label": "SOAR Framework",
-            "version": "1.0.0",
+            "version": "2.0.3",
             "minVersion": null
         },
         {
@@ -21,26 +21,30 @@
         }
     ],
     "prerequisite": null,
-    "publisher": "Fortinet CSE",
-    "description": "It is typical for large organizations to have an important turn over with several employees leaving and joining every day. While most access is managed by IAM/SSO several systems (especially legacy ones) still require local configuration to grant access for the new users or disable access for those who left. FortiSOAR Employee On/Off Boarding solution pack helps automating this process by provisioning the access for new employees on the systems they have access to and disabling that access for the ones leaving the organization",
-    "help": null,
-    "category": [
-        "Identity and Access Management"
-    ],
-    "supportInfo": "https://github.com/fortinet-fortisoar/solution-pack-employee-onboarding/blob/develop/docs/README.md",
+    "publisher": "Fortinet",
+    "description": "It is typical for large organizations to have an important turn over with several employees leaving and joining every day. While most access is managed by IAM/SSO several systems (especially legacy ones) still require local configuration to grant access for the new users or disable access for those who left. FortiSOAR Employee On/Off Boarding solution pack helps automating this process by provisioning the access for new employees on the systems they have access to and disabling that access for the ones leaving the organization.",
+    "help": "https://github.com/fortinet-fortisoar/solution-pack-employee-onboarding/blob/release/1.0.0/README.md",
+    "category": [],
+    "supportInfo": null,
     "iconLarge": "fsr-icon-large.png",
-    "recordTags": [
-        "Automation",
-        "Onboarding",
-        "Offboarding"
-    ],
     "fsrMinCompatibility": "7.2.0",
-    "date": "2022-08-29T12:07:12+00:00",
+    "date": "2022-09-05T09:58:10+00:00",
     "contents": {
         "modules": {
             "scenario": {
                 "name": "Scenario",
                 "apiName": "scenario"
+            }
+        },
+        "viewTemplates": {
+            "scenario": {
+                "name": "Scenario",
+                "apiName": "scenario",
+                "views": [
+                    "list",
+                    "detail",
+                    "form"
+                ]
             }
         },
         "playbooks": [
@@ -50,22 +54,28 @@
         ],
         "globalVariables": [
             {
-                "id": 39,
+                "id": 29,
                 "name": "Demo_mode",
                 "value": "true",
                 "default_value": "true"
+            }
+        ],
+        "connectors": [
+            {
+                "name": "Active Directory",
+                "apiName": "activedirectory"
             },
             {
-                "id": 37,
-                "name": "EOF_DB_User",
-                "value": "jstuart",
-                "default_value": "jstuart"
+                "name": "Exchange",
+                "apiName": "exchange"
             },
             {
-                "id": 38,
-                "name": "EOF_SYS_User",
-                "value": "bfoghali",
-                "default_value": "bfoghali"
+                "name": "MySQL",
+                "apiName": "mysql"
+            },
+            {
+                "name": "SSH",
+                "apiName": "ssh"
             }
         ],
         "recordSets": [

@@ -11,7 +11,7 @@
     "remoteExecutableFlag": false,
     "parameters": [],
     "synchronous": false,
-    "collection": "\/api\/3\/workflow_collections\/160d414b-d1d2-44a6-ab10-0df6b1f694fd",
+    "collection": "\/api\/3\/workflow_collections\/b6f9f97f-bc7b-4bfd-8215-b22388c5931a",
     "versions": [],
     "triggerStep": "\/api\/3\/workflow_steps\/d163e722-73d4-446b-879b-848d68a99252",
     "steps": [
@@ -64,15 +64,15 @@
             "arguments": {
                 "conditions": [
                     {
-                        "option": "no",
+                        "option": "No",
                         "default": true,
                         "step_iri": "\/api\/3\/workflow_steps\/1cd80d13-96ed-44ae-8949-4b7801251157",
                         "step_name": "Group Does Not Exist"
                     },
                     {
-                        "option": "yes",
+                        "option": "Yes",
                         "step_iri": "\/api\/3\/workflow_steps\/fbfc12e2-2919-482a-8c32-17aef9036b78",
-                        "condition": "{{ vars.group_definition.0.attributes.info|length > 0 }}",
+                        "condition": "{{ vars.group_definition.0.attributes.info | length > 0 }}",
                         "step_name": "Compute Eligible Services List"
                     }
                 ]
@@ -262,8 +262,7 @@
                         "records": [
                             "{{vars.input.records[0]}}"
                         ]
-                    },
-                    "useMockOutput": "{{globalVars.Demo_mode}}"
+                    }
                 },
                 "fieldbasedtrigger": {
                     "sort": [],
@@ -334,6 +333,7 @@
                 "title": "{{vars.input.records[0].emailBody|regex_search('(?<=Title:\\s)[a-z-A-z0-9.]+')}}",
                 "username": "{{vars.input.records[0].emailBody|regex_search('(?<=Username:\\s)[a-z-A-z0-9.]+')}}",
                 "mail_from": "{{vars.input.records[0].emailFrom|regex_search(\"[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+\")}}",
+                "useMockOutput": "{{globalVars.Demo_mode}}",
                 "target_services_playbooks_iris": "[]"
             },
             "status": null,
@@ -418,7 +418,7 @@
             "name": "Group Exists -> Group Does Not Exist",
             "targetStep": "\/api\/3\/workflow_steps\/1cd80d13-96ed-44ae-8949-4b7801251157",
             "sourceStep": "\/api\/3\/workflow_steps\/7145f498-04f5-4e62-adb8-d5edb17bd256",
-            "label": "no",
+            "label": "No",
             "isExecuted": false,
             "uuid": "6fc94752-e9d5-434b-b9e6-dc2563104c5f"
         },
@@ -454,7 +454,7 @@
             "name": "Group Exists -> Compute Eligible Services List",
             "targetStep": "\/api\/3\/workflow_steps\/fbfc12e2-2919-482a-8c32-17aef9036b78",
             "sourceStep": "\/api\/3\/workflow_steps\/7145f498-04f5-4e62-adb8-d5edb17bd256",
-            "label": "yes",
+            "label": "Yes",
             "isExecuted": false,
             "uuid": "d652d6e4-02f2-40d6-8435-43d010e86f0e"
         },

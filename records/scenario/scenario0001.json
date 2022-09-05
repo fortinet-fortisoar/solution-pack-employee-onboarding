@@ -1,52 +1,28 @@
 [
     {
         "@type": "Scenario",
+        "configuration": null,
+        "title": "Employee On\/Off-Boarding",
+        "description": "It is typical for large organizations to have an important turn over with several employees leaving and joining every day. While most access is managed by IAM\/SSO several systems (especially legacy ones) still require local configuration to grant access for the new users or disable access for those who left.\nFortiSOAR Employee On\/Off Boarding solution pack helps automating this process by provisioning the access for new employees on the systems they have access to and disabling that access for the ones leaving the organization.\nThe mapping of each user access scope is done via Active Directory, where the group object holds the list of resources the members of the group can access.\nTypically user provisioning order comes from HR, in this simulation we assume it comes via Email. The required attributes for new users are:\n\n- Username\n- Group\n- Title\n",
+        "createdAlertsID": "[\"\/api\/3\/alerts\/f7f27bd8-7312-44b7-97c4-9777a732fa98\", \"\/api\/3\/alerts\/4999360e-a06e-472d-89e6-a2c48cd8774f\", \"\/api\/3\/alerts\/d8dcb6a4-fbfa-4272-a801-69567eb2aa64\", \"\/api\/3\/alerts\/d0b6889e-53b5-40d7-81bd-db0f13da1153\"]",
         "steps": {
             "Steps": [
                 {
                     "name": "Employee On\/Off-Boarding",
                     "type": "executePlaybook",
-                    "playbookIRI": "\/api\/3\/workflows\/07b7365a-f94e-4fe0-90b8-df06a36c2e93",
+                    "playbookIRI": "\/api\/3\/workflows\/20f182d6-47a4-457c-a00e-de542c88e25d",
                     "preCreateMessage": "Create user member of SysAdmins",
                     "postCreateMessage": "",
                     "waitTimeforNextStep": 0
-                },
-                {
-                    "name": "Employee On\/Off-Boarding",
-                    "type": "executePlaybook",
-                    "playbookIRI": "\/api\/3\/workflows\/2d11b1b8-87ee-4921-ae9e-feaea2c096de",
-                    "preCreateMessage": "Offboard user member of SysAdmins",
-                    "postCreateMessage": "",
-                    "waitTimeforNextStep": 15
-                },
-                {
-                    "name": "Employee On\/Off-Boarding",
-                    "type": "executePlaybook",
-                    "playbookIRI": "\/api\/3\/workflows\/f8715a17-a585-4c5f-9f54-77270a8ac47d",
-                    "preCreateMessage": "Create user member of DBAdmins",
-                    "postCreateMessage": "",
-                    "waitTimeforNextStep": 30
-                },
-                {
-                    "name": "Employee On\/Off-Boarding",
-                    "type": "executePlaybook",
-                    "playbookIRI": "\/api\/3\/workflows\/0d11f906-15ea-4aa9-a665-405cd44f061f",
-                    "preCreateMessage": "Offboard user member of DBAdmins",
-                    "postCreateMessage": "",
-                    "waitTimeforNextStep": 15
                 }
             ]
         },
-        "configuration": "Symantec",
-        "title": "Employee On\/Off-Boarding",
-        "description": "It is typical for large organizations to have an important turn over with several employees leaving and joining every day. While most access is managed by IAM\/SSO several systems (especially legacy ones) still require local configuration to grant access for the new users or disable access for those who left.\nFortiSOAR Employee On\/Off Boarding solution pack helps automating this process by provisioning the access for new employees on the systems they have access to and disabling that access for the ones leaving the organization.\nThe mapping of each user access scope is done via Active Directory, where the group object holds the list of resources the members of the group can access.\nTypically user provisioning order comes from HR, in this simulation we assume it comes via Email. The required attributes for new users are:\n\n- Username\n- Group\n- Title\n",
-        "createdAlertsID": null,
-        "uuid": "a9c730c3-fcd4-480c-9d8f-b1e26e7b6232",
-        "createUser": "\/api\/3\/appliances\/57545210-2adc-472b-a24f-2df6ee8dfe63",
-        "createDate": 1631682824,
-        "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-        "modifyDate": 1661773792.95143,
-        "id": 14,
+        "uuid": "3227cb4e-ecdc-4d66-a240-2a69b20bc4f2",
+        "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+        "createDate": 1662360542.072176,
+        "modifyUser": "\/api\/3\/appliances\/57545210-2adc-472b-a24f-2df6ee8dfe63",
+        "modifyDate": 1662371468.382254,
+        "id": 15,
         "recordTags": [
             "FortiSOAR"
         ]

@@ -13,7 +13,7 @@
         "parameters"
     ],
     "synchronous": false,
-    "collection": "\/api\/3\/workflow_collections\/160d414b-d1d2-44a6-ab10-0df6b1f694fd",
+    "collection": "\/api\/3\/workflow_collections\/b6f9f97f-bc7b-4bfd-8215-b22388c5931a",
     "versions": [],
     "triggerStep": "\/api\/3\/workflow_steps\/c66ef108-0974-428c-bb34-d2ba0e52b131",
     "steps": [
@@ -76,7 +76,7 @@
             },
             "status": null,
             "top": "300",
-            "left": "125",
+            "left": "475",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
             "uuid": "ea47f869-8a4c-4515-883f-dab8ed2e75da"
@@ -95,7 +95,7 @@
             },
             "status": null,
             "top": "300",
-            "left": "475",
+            "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
             "uuid": "f1ae0cd4-6d8f-4491-a823-64b1f5e1f7db"

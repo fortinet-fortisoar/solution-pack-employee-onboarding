@@ -1,0 +1,46 @@
+[
+    {
+        "name": "activedirectory",
+        "label": "Active Directory",
+        "category": "Directory Service",
+        "description": "Active Directory (AD) is a directory service that Microsoft developed for Windows domain networks. You can directly query AD to retrieve information about users, groups, and computers, in an organization, by using the Lightweight Directory Access Protocol (LDAP) to directly query the AD.",
+        "publisher": null,
+        "operation_roles": [],
+        "configurations": [],
+        "dataImports": [],
+        "install_mode": "rpm"
+    },
+    {
+        "name": "exchange",
+        "label": "Exchange",
+        "category": "Email Server",
+        "description": "The Exchange connector provides a robust, platform-independent, and simple interface for communicating with Microsoft Exchange 2007-2016 Server or Office 365 using Exchange Web Services (EWS).",
+        "publisher": null,
+        "operation_roles": [],
+        "configurations": [],
+        "dataImports": [],
+        "install_mode": "rpm"
+    },
+    {
+        "name": "mysql",
+        "label": "MySQL",
+        "category": "Database",
+        "description": "MySQL Connector allows different database operations with MySQL.",
+        "publisher": null,
+        "operation_roles": [],
+        "configurations": [],
+        "dataImports": [],
+        "install_mode": "rpm"
+    },
+    {
+        "name": "ssh",
+        "label": "SSH",
+        "category": "utilities",
+        "description": "Steps that use an ssh connection. Including sftp and remote code execution",
+        "publisher": null,
+        "operation_roles": [],
+        "configurations": [],
+        "dataImports": [],
+        "install_mode": "rpm"
+    }
+]
