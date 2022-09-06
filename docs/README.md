@@ -36,7 +36,7 @@ If the action is to **deprovision** similar logic is applied except the action w
 
 ### 2.3) For Live mode (Real data):
 - MS Exchange/SMTP Connectors configured with your MS Exchange parameters (To receive instruction emails and send notifications)
-- AD Connector configured with your DC parameters (To run AD related actions)
+- AD Connector configured with your DC parameters (To run AD related actions). Note that LDAPS has to be used while configuring the AD conenctor, this is required for all password operations.
 - MySQL/SSH server(s) to act as resources
 
 > All Credentials used with the above connectors must have the required privileges to perform the actions they are meant to do (add user, disable user...etc)
