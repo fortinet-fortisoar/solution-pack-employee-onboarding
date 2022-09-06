@@ -22,11 +22,10 @@ The **Automated Employee Onboarding** solution pack depends on the following sol
 For optimal performance of **Automated Employee Onboarding** solution pack, you can install and configure the connectors that help with the following:
 
 >**Example**:
->* Exchange connector to create a mailbox for user.
->   - To configure and use the Microsoft Exchange connector, refer to [Configuring Exchange Connector](https://docs.fortinet.com/document/fortisoar/4.0.0/exchange/295/exchange-v4-0-0)
->* Active Directory connector to onboard or offboard the employee
->    - To configure and use the Active Directory connector, refer to [Configuring Active Directory Connector](https://docs.fortinet.com/document/fortisoar/2.2.0/active-directory/154/active-directory-v2-2-0)
->* SSH connector
->    - To configure and use the SSH connector, refer to [Configuring SSH Connector](https://docs.fortinet.com/document/fortisoar/2.1.1/ssh-connector/329/ssh-connector-v2-1-1)
->* MySQL connector
->    - To configure and use the MySQL connector, refer to [Configuring MySQL Connector](https://docs.fortinet.com/document/fortisoar/1.0.0/mysql/1/mysql-v1-0-0)
+>* **Exchange:** To create a mailbox for user, for configuration refer to [Configuring Exchange Connector](https://docs.fortinet.com/document/fortisoar/4.0.0/exchange/295/exchange-v4-0-0)
+>* **Active Directory:** To enable and disable user, for configuration refer to [Configuring Active Directory Connector](https://docs.fortinet.com/document/fortisoar/2.2.0/active-directory/154/active-directory-v2-2-0)
+>   *    **Note:** LDAPS has to be used while configuring the AD conenctor, this is required for all password operations.
+>* **SSH connector:** To configure and use the SSH connector, refer to [Configuring SSH Connector](https://docs.fortinet.com/document/fortisoar/2.1.1/ssh-connector/329/ssh-connector-v2-1-1)
+>* **MySQL:** To configure and use the MySQL connector, refer to [Configuring MySQL Connector](https://docs.fortinet.com/document/fortisoar/1.0.0/mysql/1/mysql-v1-0-0)
+
+> **Note:** All Credentials used with the above connectors must have the required privileges to perform the actions they are meant to do (add user, disable user...etc)

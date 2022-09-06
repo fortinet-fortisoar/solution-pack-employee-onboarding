@@ -13,7 +13,6 @@ The **Automated Employee Onboarding** solution pack contains the following resou
 | Microsoft Active Directory | Helps directly query AD to retrieve information about users, groups, and computers, in an organization, by using the Lightweight Directory Access Protocol (LDAP). |
 | MySQL | MySQL Connector allows different database operations with MySQL. |
 | SSH | Steps that use an ssh connection. Including sftp and remote code execution. |
-Note : All Credentials used with the above connectors must have the required privileges to perform the actions they are meant to do (add user, disable user...etc)
 
 ## Global Variable
 
@@ -41,5 +40,7 @@ Note : All Credentials used with the above connectors must have the required pri
 | Create MySQL User on FR-BKDB-1 Server | Creates a MySQL user and grant access to DB. |
 | Disable MySQL User on FR-BKDB-1 Server | Deletes MySQL user. |
 | Scenario - Employee On/Off Boarding | Request to Onboard/Offboard user of SysAdmin/DbAdmin |
+
+> **Note:** You can customize the use case for your environment by adding 3 playbooks for each service: Provision, Deprovision , Management the latter is only used as a wrapper for the first two. Open any examples of the existing services to see how is it done
 
 >**Warning:** We recommend that you clone these playbooks before customizing to avoid loss of information while upgrading the solution pack.

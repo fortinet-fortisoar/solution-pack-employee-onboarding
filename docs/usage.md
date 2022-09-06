@@ -9,12 +9,12 @@ To understand the process FortiSOAR follows to respond to **Automated Employee O
 
 ## Simulation mode (Fake mock data)
     
-*   Make sure the global variable **Demo mode** is set to `true`. By default its same.
+*   Make sure the global variable **Demo mode** is set to `true`. 
 *   Playbook: **Scenario - Employee On/Off Boarding** have two variables **sysUser** and **dbUser** which can be populate with names of your choice in configuration step. By default value is `bfoghali` and `jstuart` respectively.
 
 
 *   Browse to Simulations, select the **Employee On/Off-Boarding** scenario and click **Simulate Scenario**.
-*   Four Alerts will be created at 30 seconds interval:
+*   Four Alerts are created within the interval of 10 seconds:
  
         System user Onboarding
         System user Offboarding
@@ -24,8 +24,8 @@ To understand the process FortiSOAR follows to respond to **Automated Employee O
 
 ## Live mode (Real data)
 
-Note: Make sure the global variable **Demo mode** is set to `false`.
-*   To Onboard a user send an email to your FortiSOAR mailbox with:
+**Note:** Make sure the global variable **Demo mode** is set to `false`.
+*   To Onboard a user send an email to your Designated mailbox with:
 
         Subject: User <Employee Name> Onboarding
         Body:
@@ -33,11 +33,12 @@ Note: Make sure the global variable **Demo mode** is set to `false`.
             Group: ad_group
             Title: job_title
             
-*   To Offboard a user send an email to your FortiSOAR mailbox with:
+*   To Offboard a user send an email to your Designated mailbox with:
     
         Subject: User <Employee Name> Offboarding
         Body:
             Username: ad_username_to_create
             Group: ad_group
 
-Make sure the groups your users belong to have the appropriate management playbooks UUIDs in their info attribute in CSV format
+* Make sure the groups your users belong to have the appropriate management playbooks UUIDs in their info attribute in CSV format.
+> **Note:** The group/resources mapping is managed via the Info field of the group definition within Active Directory. The field contains the CSV of UUIDs of the management playbooks for the resources within the scope of the group. As an example, if the group grants access to SSH/Server1 and MySQL/Server2 the info field would look like: `9c827fcf-53bd-403a-b3bf-406f1a27d9d8`, `0d11f906-15ea-4aa9-a665-405cd44f061f`
