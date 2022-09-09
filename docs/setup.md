@@ -12,10 +12,10 @@
 
 The **Automated Employee Onboarding** solution pack depends on the following solution packs that are installed automatically &ndash; if not already installed.
 
-| **Solution Pack Name** | **Purpose**                                              |
-|:-----------------------|:---------------------------------------------------------|
-| SOAR Framework         | Required for Incident Response modules                   |
-| SOC Simulator          | Required for Scenario Module and SOC Simulator connector |
+| Solution Pack Name | Purpose                                                  |
+|:-------------------|:---------------------------------------------------------|
+| SOAR Framework     | Required for Incident Response modules                   |
+| SOC Simulator      | Required for Scenario Module and SOC Simulator connector |
 
 # Configuration
 
