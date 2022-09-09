@@ -3,7 +3,7 @@
 
 # Usage
 
-Refer to [Simulate Scenario documentation](https://github.com/fortinet-fortisoar/solution-pack-soc-simulator/tree/release/1.0.2) to understand how to simulate and reset scenarios.
+Refer to [Simulate Scenario Documentation](https://github.com/fortinet-fortisoar/solution-pack-soc-simulator/tree/develop) to understand how to simulate and reset scenarios.
 
 To understand the process FortiSOAR follows to respond to **Automated Employee Onboarding**, we have included a scenario &mdash; **Employee On/Off-Boarding** with this solution pack. Refer to following modes of operation to understand how this solution pack's automation addresses your needs.
 
