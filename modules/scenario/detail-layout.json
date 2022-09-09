@@ -92,7 +92,8 @@
                                                 }
                                             },
                                             "icon": "icon icon-alert",
-                                            "show": false
+                                            "show": false,
+                                            "visible": true
                                         },
                                         {
                                             "title": "Source",
@@ -147,7 +148,8 @@
                                                 }
                                             },
                                             "icon": "icon icon-running-playbooks",
-                                            "show": true
+                                            "show": true,
+                                            "visible": true
                                         }
                                     ],
                                     "wid": "83044353-f9cf-4bd4-b737-a43c61dd9859",
@@ -169,7 +171,7 @@
                 "icon": "fa fa-check"
             },
             {
-                "id": "\/api\/3\/workflows\/845ea0c5-8ee9-4bc2-879c-b7639140f4e8",
+                "id": "\/api\/3\/workflows\/98506caa-32ab-429d-9c0f-42d92a71b5d1",
                 "name": "Reset Scenario",
                 "icon": "fa fa-trash-o"
             }

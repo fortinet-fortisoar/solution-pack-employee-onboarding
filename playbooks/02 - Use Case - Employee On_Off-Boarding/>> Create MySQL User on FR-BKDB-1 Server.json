@@ -13,7 +13,7 @@
         "parameters"
     ],
     "synchronous": false,
-    "collection": "\/api\/3\/workflow_collections\/160d414b-d1d2-44a6-ab10-0df6b1f694fd",
+    "collection": "\/api\/3\/workflow_collections\/b6f9f97f-bc7b-4bfd-8215-b22388c5931a",
     "versions": [],
     "triggerStep": "\/api\/3\/workflow_steps\/036e8f9e-e5ac-4702-8b8d-c47aab4c672d",
     "steps": [
@@ -25,14 +25,14 @@
                 "step_variables": {
                     "input": {
                         "params": []
-                    },
-                    "useMockOutput": "{{globalVars.Demo_mode}}"
+                    }
                 }
             },
             "status": null,
             "top": "30",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
             "uuid": "036e8f9e-e5ac-4702-8b8d-c47aab4c672d"
         },
         {
@@ -54,10 +54,25 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "165",
+            "top": "300",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
             "uuid": "35908b99-581d-465d-9f68-e0f4be1f0776"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "useMockOutput": "{{globalVars.Demo_mode}}"
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "97f659bf-057c-4765-93f1-dd70999536d8"
         },
         {
             "@type": "WorkflowStep",
@@ -78,9 +93,10 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "435",
+            "top": "570",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
             "uuid": "b6f606a9-68ca-4453-a986-d3affcf37b02"
         },
         {
@@ -91,9 +107,10 @@
                 "data": "{\"Server FQDN\":\"FR-BKDB-1.fortielab.com\",\"Access Protocol\":\"SQL\",\"Username\": \"{{vars.input.params.parameters.username}}\",\"Password\": \"{{vars.input.params.parameters.password}}\"}"
             },
             "status": null,
-            "top": "570",
+            "top": "705",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
             "uuid": "befb9fd6-6a8b-415b-a0d8-91bd00157666"
         },
         {
@@ -115,9 +132,10 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "300",
+            "top": "435",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
             "uuid": "f230d221-3998-413d-8c30-847af35955bd"
         }
     ],
@@ -142,12 +160,21 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Start -> Create User",
+            "name": "Configuration -> Create User",
             "targetStep": "\/api\/3\/workflow_steps\/35908b99-581d-465d-9f68-e0f4be1f0776",
+            "sourceStep": "\/api\/3\/workflow_steps\/97f659bf-057c-4765-93f1-dd70999536d8",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "734689f3-a7b7-48a5-8e49-a091074cd030"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/97f659bf-057c-4765-93f1-dd70999536d8",
             "sourceStep": "\/api\/3\/workflow_steps\/036e8f9e-e5ac-4702-8b8d-c47aab4c672d",
             "label": null,
             "isExecuted": false,
-            "uuid": "e6826007-c716-4adc-a79d-2c0881249c95"
+            "uuid": "7a2ae7c3-7ce8-4d80-99e6-392f465bb20c"
         },
         {
             "@type": "WorkflowRoute",
@@ -159,6 +186,7 @@
             "uuid": "fc0f25f7-96f1-43c5-a47c-4c60f55256de"
         }
     ],
+    "groups": [],
     "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
     "uuid": "3ea0fe6b-aca2-4770-9e3f-542fdac5906b",
     "owners": [],
