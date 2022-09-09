@@ -9,7 +9,7 @@ The **Automated Employee Onboarding** solution pack contains the following resou
 
 | Name                       | Description                                                                                                                                                                                      |
 |:---------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Excahnge                   | The Exchange connector provides a robust, platform-independent, and simple interface for communicating with Microsoft Exchange 2007-2016 Server or Office 365 using Exchange Web Services (EWS). |
+| Exchange                   | The Exchange connector provides a robust, platform-independent, and simple interface for communicating with Microsoft Exchange 2007-2016 Server or Office 365 using Exchange Web Services (EWS). |
 | Microsoft Active Directory | Helps directly query AD to retrieve information about users, groups, and computers, in an organization, by using the Lightweight Directory Access Protocol (LDAP).                               |
 | MySQL                      | MySQL Connector allows different database operations with MySQL.                                                                                                                                 |
 | SSH                        | Steps that use an ssh connection. Including sftp and remote code execution.                                                                                                                      |
