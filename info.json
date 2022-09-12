@@ -37,23 +37,6 @@
     "fsrMinCompatibility": "7.2.0",
     "date": "2022-09-06T07:11:24+00:00",
     "contents": {
-        "modules": {
-            "scenario": {
-                "name": "Scenario",
-                "apiName": "scenario"
-            }
-        },
-        "viewTemplates": {
-            "scenario": {
-                "name": "Scenario",
-                "apiName": "scenario",
-                "views": [
-                    "list",
-                    "detail",
-                    "form"
-                ]
-            }
-        },
         "playbooks": [
             {
                 "name": "02 - Use Case - Employee On_Off-Boarding"
