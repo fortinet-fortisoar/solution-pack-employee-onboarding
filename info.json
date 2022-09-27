@@ -9,7 +9,7 @@
             "name": "sOARFramework",
             "type": "solutionpack",
             "label": "SOAR Framework",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "minVersion": null
         },
         {
@@ -21,31 +21,22 @@
         }
     ],
     "prerequisite": null,
-    "publisher": "Fortinet CSE",
-    "description": "It is typical for large organizations to have an important turn over with several employees leaving and joining every day. While most access is managed by IAM/SSO several systems (especially legacy ones) still require local configuration to grant access for the new users or disable access for those who left. FortiSOAR Employee On/Off Boarding solution pack helps automating this process by provisioning the access for new employees on the systems they have access to and disabling that access for the ones leaving the organization",
-    "help": null,
+    "publisher": "Fortinet SE",
+    "description": "It is typical for large organizations to have an important turn over with several employees leaving and joining every day. While most access is managed by IAM/SSO several systems (especially legacy ones) still require local configuration to grant access for the new users or disable access for those who left. FortiSOAR Employee On/Off Boarding solution pack helps automating this process by provisioning the access for new employees on the systems they have access to and disabling that access for the ones leaving the organization.",
+    "help": "https://github.com/fortinet-fortisoar/solution-pack-employee-onboarding/blob/release/1.0.0/README.md",
     "category": [
         "Identity and Access Management"
     ],
-    "supportInfo": "https://github.com/fortinet-fortisoar/solution-pack-employee-onboarding/blob/develop/docs/README.md",
+    "supportInfo": null,
     "iconLarge": "fsr-icon-large.png",
     "recordTags": [
         "Automation",
         "Onboarding",
         "Offboarding"
     ],
-    "fsrMinCompatibility": "7.2.1",
-    "date": "2022-06-29T14:31:27+00:00",
+    "fsrMinCompatibility": "7.2.0",
+    "date": "2022-09-06T07:11:24+00:00",
     "contents": {
-        "viewTemplates": {
-            "scenario": {
-                "name": "Scenario",
-                "apiName": "scenario",
-                "views": [
-                    "list"
-                ]
-            }
-        },
         "playbooks": [
             {
                 "name": "02 - Use Case - Employee On_Off-Boarding"
@@ -53,19 +44,7 @@
         ],
         "globalVariables": [
             {
-                "id": 34,
-                "name": "EOF_DB_User",
-                "value": "jstuart",
-                "default_value": "jstuart"
-            },
-            {
-                "id": 35,
-                "name": "EOF_SYS_User",
-                "value": "bfoghali",
-                "default_value": "bfoghali"
-            },
-            {
-                "id": 20,
+                "id": 29,
                 "name": "Demo_mode",
                 "value": "true",
                 "default_value": "true"
@@ -73,8 +52,20 @@
         ],
         "connectors": [
             {
-                "name": "FortiSOAR SOC Simulator",
-                "apiName": "fortisoar-soc-simulator"
+                "name": "Active Directory",
+                "apiName": "activedirectory"
+            },
+            {
+                "name": "Exchange",
+                "apiName": "exchange"
+            },
+            {
+                "name": "MySQL",
+                "apiName": "mysql"
+            },
+            {
+                "name": "SSH",
+                "apiName": "ssh"
             }
         ],
         "recordSets": [
