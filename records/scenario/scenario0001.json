@@ -1,52 +1,28 @@
 [
     {
         "@type": "Scenario",
+        "configuration": null,
+        "title": "Employee On\/Off-Boarding",
+        "description": "It is typical for large organizations to have an important turn over with several employees leaving and joining every day. While most access is managed by IAM\/SSO several systems (especially legacy ones) still require local configuration to grant access for the new users or disable access for those who left.\nFortiSOAR Employee On\/Off Boarding solution pack helps automating this process by provisioning the access for new employees on the systems they have access to and disabling that access for the ones leaving the organization.\nThe mapping of each user access scope is done via Active Directory, where the group object holds the list of resources the members of the group can access.\nTypically user provisioning order comes from HR, in this simulation we assume it comes via Email. The required attributes for new users are:\n\n- Username\n- Group\n- Title\n",
+        "createdAlertsID": null,
         "steps": {
             "Steps": [
                 {
                     "name": "Employee On\/Off-Boarding",
                     "type": "executePlaybook",
-                    "playbookIRI": "\/api\/3\/workflows\/07b7365a-f94e-4fe0-90b8-df06a36c2e93",
+                    "playbookIRI": "\/api\/3\/workflows\/20f182d6-47a4-457c-a00e-de542c88e25d",
                     "preCreateMessage": "Create user member of SysAdmins",
                     "postCreateMessage": "",
                     "waitTimeforNextStep": 0
-                },
-                {
-                    "name": "Employee On\/Off-Boarding",
-                    "type": "executePlaybook",
-                    "playbookIRI": "\/api\/3\/workflows\/2d11b1b8-87ee-4921-ae9e-feaea2c096de",
-                    "preCreateMessage": "Offboard user member of SysAdmins",
-                    "postCreateMessage": "",
-                    "waitTimeforNextStep": 15
-                },
-                {
-                    "name": "Employee On\/Off-Boarding",
-                    "type": "executePlaybook",
-                    "playbookIRI": "\/api\/3\/workflows\/f8715a17-a585-4c5f-9f54-77270a8ac47d",
-                    "preCreateMessage": "Create user member of DBAdmins",
-                    "postCreateMessage": "",
-                    "waitTimeforNextStep": 30
-                },
-                {
-                    "name": "Employee On\/Off-Boarding",
-                    "type": "executePlaybook",
-                    "playbookIRI": "\/api\/3\/workflows\/0d11f906-15ea-4aa9-a665-405cd44f061f",
-                    "preCreateMessage": "Offboard user member of DBAdmins",
-                    "postCreateMessage": "",
-                    "waitTimeforNextStep": 15
                 }
             ]
         },
-        "configuration": "Symantec",
-        "title": "Employee On\/Off-Boarding",
-        "description": "# Employee On\/Off-Boarding\n[![Solution Pack Video](https:\/\/img.youtube.com\/vi\/ytVDEOY432A\/0.jpg)](https:\/\/www.youtube.com\/embed\/ytVDEOY432A)\n\n[Solution Pack Video Introduction](https:\/\/www.youtube.com\/embed\/ytVDEOY432A)\n                                   \n## 1) Overview\nIt is typical for large organizations to have an important turn over with several employees leaving and joining every day. While most access is managed by IAM\/SSO several systems (especially legacy ones) still require local configuration to grant access for the new users or disable access for those who left.\nFortiSOAR Employee On\/Off Boarding solution pack helps automating this process by provisioning the access for new employees on the systems they have access to and disabling that access for the ones leaving the organization.\nThe mapping of each user access scope is done via Active Directory, where the group object holds the list of resources the members of the group can access.\nTypically user provisioning order comes from HR, in this simulation we assume it comes via Email. The required attributes for new users are:\n\n- Username\n- Group\n- Title\n\nFortiSOAR will: \n - Create the user on *Active Directory*\n - Create a mailbox for the user on *Microsoft Exchange*\n - Read the group access scope from *Active Directory* and provision access for the user on all systems part of the above scope\n\n > The group\/resources mapping is managed via the *Info* field of the group definition within *Active Directory*. the field contains the CSV of UUIDs of the management playbooks for the resources within the scope of the group. As an example, if the group grants access to SSH\/Server1 and MySQL\/Server2 the info field would look like: `9c827fcf-53bd-403a-b3bf-406f1a27d9d8,0d11f906-15ea-4aa9-a665-405cd44f061f` \n\nIf the action is to **deprovision** similar logic is applied except the action would be either to disable the user or delete it depending on the target system\n\n## 2) Prerequisites\n\n### 2.1) Generic Prerequisites:\n- Incident Response Content Pack: `yum install -y fsr-ir-content-pack.x86_64`\n\n### 2.2) For Simulation mode (Fake mock data):\n- Make sure your global variable: `Demo_mode` is set to `true` (Playbook editors > Tools > Global Variables)\n- Make sure your global variable: `EOF_SYS_User` is set to a username of your choice (Playbook editors > Tools > Global Variables). The variable holds the name of the newly provisioned or deprovisioned user\n- Make sure your global variable: `EOF_DB_User` is set to a username of your choice (Playbook editors > Tools > Global Variables)\n- FortiSOAR SOC Simulator Connector configured (1.0.9+)\n- It is recommended to have a working SMTP connector to receive tasks notifications\n\n### 2.3) For Live mode (Real data):\n- MS Exchange\/SMTP Connectors configured with your MS Exchange parameters (To receive instruction emails and send notifications)\n- AD Connector configured with your DC parameters (To run AD related actions)\n- MySQL\/SSH server(s) to act as resources\n\n> All Credentials used with the above connectors must have the required privileges to perform the actions they are meant to do (add user, disable user...etc)\n\n> You can customize the use case for your environment by adding 3 playbooks for each service: Provision, Deprovision , Management the latter is only used as a wrapper for the first two. Open any examples of the existing services to see how is it done\n\n\n### 3) Installation\/Deployment:\n- Download the repo's zip from this page, click on: **Code > Download ZIP** and save the ZIP file to your workstation\n- Open FortiSOAR import wizard located at: **Settings > Import Wizard**. Click on ![Import From File](import_from_file.png)\n- Drag and drop the zip file you downloaded and follow the wizard\n\n### 4) Simulation Steps:\n#### 4.1) For Simulation mode (Fake mock data):\n- Edit global variables: EOF_SYS_User and EOF_DB_User and populate them with names of your choice\n- Browse to Simulations, select the scenario and click **Run scenario**\n- (4) Alerts will be created at 30 seconds interval:\n    - System user Onboarding\n    - System user Offboarding\n    - DBA user Onboarding\n    - DBA user Offboarding\n- For Each alert track the associated playbooks to see what services are being provisioned based on the group defined in the user provisioning email request \n\n#### 4.2) For Live mode (Real data):\n- To Onboard a user send an email to your FortiSOAR mailbox with:\n    - Subject: user ... onboarding\n    - body:\n```\nUsername: ad_username_to_create\nGroup: ad_group\nTitle: job_title\n```\n- To Offboard a user send an email to your FortiSOAR mailbox with:\n    - Subject: user ... offboarding\n    - body:\n```\nUsername: ad_username_to_create\nGroup: ad_group\n```\n- Make sure the groups your users belong to have the appropriate management playbooks UUIDs in their info attribute in CSV format\n\n\n",
-        "createdAlertsID": null,
-        "uuid": "a9c730c3-fcd4-480c-9d8f-b1e26e7b6232",
-        "createUser": "\/api\/3\/appliances\/57545210-2adc-472b-a24f-2df6ee8dfe63",
-        "createDate": 1631682824,
+        "uuid": "3227cb4e-ecdc-4d66-a240-2a69b20bc4f2",
+        "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+        "createDate": 1662360542.072176,
         "modifyUser": "\/api\/3\/appliances\/57545210-2adc-472b-a24f-2df6ee8dfe63",
-        "modifyDate": 1656512851.598205,
-        "id": 3,
+        "modifyDate": 1662371468.382254,
+        "id": 15,
         "recordTags": [
             "FortiSOAR"
         ]
