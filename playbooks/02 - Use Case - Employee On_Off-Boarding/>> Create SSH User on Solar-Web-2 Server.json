@@ -1,0 +1,257 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": ">> Create SSH User on Solar-Web-2 Server",
+    "aliasName": null,
+    "tag": null,
+    "description": "Provisionuser access on Elab server",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [
+        "parameters"
+    ],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/b6f9f97f-bc7b-4bfd-8215-b22388c5931a",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/ce421644-662c-4cd4-9a70-eefd5c59ab87",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Group Exists",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "Yes",
+                        "step_iri": "\/api\/3\/workflow_steps\/95d69a38-762d-43e3-a469-1669a4474958",
+                        "condition": "{{ vars.input.params.parameters.group in vars.available_groups }}",
+                        "step_name": "Provision user"
+                    },
+                    {
+                        "option": "No",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/a9e658ae-3f15-4392-b8ec-db60c2ea8493",
+                        "step_name": "Exit with Error"
+                    }
+                ]
+            },
+            "status": null,
+            "top": "570",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": null,
+            "uuid": "1bf341c5-3f22-4069-a40a-799e233dd865"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Compute Command to Run",
+            "description": null,
+            "arguments": {
+                "create_user_cmd": "useradd -m -g {{vars.input.params.parameters.group}} -p $(openssl passwd -1 {{vars.input.params.parameters.password}}) {{vars.input.params.parameters.username}};id {{vars.input.params.parameters.username}}"
+            },
+            "status": null,
+            "top": "300",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "5a5b853c-4d9b-4675-91ff-d580ab0ebaa3"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Check Group",
+            "description": null,
+            "arguments": {
+                "name": "SSH",
+                "config": "be384f39-0ac1-41dc-b30f-497f9b5a09ed",
+                "params": {
+                    "cmd": "getent group|cut -d: -f1",
+                    "allowed_exit": "-1,0",
+                    "is_super_user": false
+                },
+                "version": "2.1.1",
+                "connector": "ssh",
+                "operation": "run_remote_command",
+                "mock_result": "{\n  \"data\": \"root\\r\\ndaemon\\r\\nbin\\r\\nsys\\r\\nadm\\r\\ntty\\r\\ndisk\\r\\nlp\\r\\nmail\\r\\nnews\\r\\nuucp\\r\\nman\\r\\nproxy\\r\\nkmem\\r\\ndialout\\r\\nfax\\r\\nvoice\\r\\ncdrom\\r\\nfloppy\\r\\ntape\\r\\nsudo\\r\\naudio\\r\\ndip\\r\\nwww-data\\r\\nbackup\\r\\noperator\\r\\nlist\\r\\nirc\\r\\nsrc\\r\\ngnats\\r\\nshadow\\r\\nutmp\\r\\nvideo\\r\\nsasl\\r\\nplugdev\\r\\nstaff\\r\\ngames\\r\\nusers\\r\\nnogroup\\r\\nsystemd-journal\\r\\nsystemd-network\\r\\nsystemd-resolve\\r\\ninput\\r\\ncrontab\\r\\nsyslog\\r\\nmessagebus\\r\\nmysql\\r\\nmlocate\\r\\nssl-cert\\r\\nuuidd\\r\\nssh\\r\\nsysadmin\\r\\nlpadmin\\r\\nsambashare\\r\\ntinyproxy\\r\\ndocker\\r\\nftp\\r\\nrdma\\r\\ntrooper1\\r\\ntrooper2\\r\\nEngineering\\r\\nSun.Tzu\\r\\nsysadmins\",\n  \"status\": \"Success\",\n  \"message\": \"\",\n  \"operation\": null\n}",
+                "operationTitle": "Execute remote command",
+                "pickFromTenant": false,
+                "step_variables": {
+                    "available_groups": "{{vars.result.data}}"
+                }
+            },
+            "status": null,
+            "top": "435",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
+            "uuid": "79f12792-4f4a-4974-9482-cc8c22c92269"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Provision user",
+            "description": null,
+            "arguments": {
+                "name": "SSH",
+                "config": "be384f39-0ac1-41dc-b30f-497f9b5a09ed",
+                "params": {
+                    "cmd": "{{vars.create_user_cmd}}",
+                    "allowed_exit": "-1,0",
+                    "is_super_user": false
+                },
+                "version": "2.1.1",
+                "connector": "ssh",
+                "operation": "run_remote_command",
+                "mock_result": "{\n  \"data\": \"uid=1025({{vars.input.params.parameters.username}}) gid=1020({{vars.input.params.parameters.group}}) groups=1020({{vars.input.params.parameters.group}})\",\n  \"status\": \"Success\",\n  \"message\": \"\",\n  \"operation\": null\n}",
+                "operationTitle": "Execute remote command",
+                "pickFromTenant": false,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "705",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
+            "uuid": "95d69a38-762d-43e3-a469-1669a4474958"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Exit with Error",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "msg": "Group: {{vars.input.params.parameters.group}} does not exist !"
+                },
+                "version": "3.2.0",
+                "connector": "cyops_utilities",
+                "operation": "raise_exception",
+                "operationTitle": "Utils: Raise Exception",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "705",
+            "left": "475",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "a9e658ae-3f15-4392-b8ec-db60c2ea8493"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "useMockOutput": "{{globalVars.Demo_mode}}"
+            },
+            "status": null,
+            "top": "165",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "cc19e59c-3cf6-4d05-96a0-12d2a6df7904"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "ce421644-662c-4cd4-9a70-eefd5c59ab87"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Data Output",
+            "description": null,
+            "arguments": {
+                "data": "{\"Server FQDN\":\"Solar-Web-2.fortielab.com\",\"Access Protocol\":\"SSH\",\"Username\": \"{{vars.input.params.parameters.username}}\",\"Password\": \"{{vars.input.params.parameters.password}}\"}"
+            },
+            "status": null,
+            "top": "840",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "f1fc7e45-3682-4736-9155-d69b17de98a1"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Check Group -> Group Exists",
+            "targetStep": "\/api\/3\/workflow_steps\/1bf341c5-3f22-4069-a40a-799e233dd865",
+            "sourceStep": "\/api\/3\/workflow_steps\/79f12792-4f4a-4974-9482-cc8c22c92269",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "3710c4a4-2d56-4f4d-977b-260250248467"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Compute Command to Run -> Check Group",
+            "targetStep": "\/api\/3\/workflow_steps\/79f12792-4f4a-4974-9482-cc8c22c92269",
+            "sourceStep": "\/api\/3\/workflow_steps\/5a5b853c-4d9b-4675-91ff-d580ab0ebaa3",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "539a36d4-1b0d-47b3-90aa-e70f85b9b67f"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Compute Command to Run",
+            "targetStep": "\/api\/3\/workflow_steps\/5a5b853c-4d9b-4675-91ff-d580ab0ebaa3",
+            "sourceStep": "\/api\/3\/workflow_steps\/cc19e59c-3cf6-4d05-96a0-12d2a6df7904",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "9d95651f-7d33-4ed7-8867-ed2cfadb5406"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Provision user -> Data Output",
+            "targetStep": "\/api\/3\/workflow_steps\/f1fc7e45-3682-4736-9155-d69b17de98a1",
+            "sourceStep": "\/api\/3\/workflow_steps\/95d69a38-762d-43e3-a469-1669a4474958",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "ab9bf91e-c012-467d-bfbe-1a1c5d455dce"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/cc19e59c-3cf6-4d05-96a0-12d2a6df7904",
+            "sourceStep": "\/api\/3\/workflow_steps\/ce421644-662c-4cd4-9a70-eefd5c59ab87",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "ce42736d-2636-4da8-aaa4-cdf01dbab657"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Group Exists -> Provision user",
+            "targetStep": "\/api\/3\/workflow_steps\/95d69a38-762d-43e3-a469-1669a4474958",
+            "sourceStep": "\/api\/3\/workflow_steps\/1bf341c5-3f22-4069-a40a-799e233dd865",
+            "label": "Yes",
+            "isExecuted": false,
+            "uuid": "d1675de2-6aac-4f14-b320-a0ecf9f5fd04"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Group Exists -> Exit with Error",
+            "targetStep": "\/api\/3\/workflow_steps\/a9e658ae-3f15-4392-b8ec-db60c2ea8493",
+            "sourceStep": "\/api\/3\/workflow_steps\/1bf341c5-3f22-4069-a40a-799e233dd865",
+            "label": "No",
+            "isExecuted": false,
+            "uuid": "f728b8da-1654-4820-a156-eeeadbae9ea7"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "57520c29-d64b-4082-b025-f713e1a16a60",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": []
+}

@@ -1,0 +1,107 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": ">> Create Mailbox on Exchange",
+    "aliasName": null,
+    "tag": null,
+    "description": "Creates a mailbox for a new AD user",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [
+        "username"
+    ],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/b6f9f97f-bc7b-4bfd-8215-b22388c5931a",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/ce51227c-9260-4f25-a5a2-c44a3a9fa5f2",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Create MailBox",
+            "description": null,
+            "arguments": {
+                "name": "SSH",
+                "config": "87188270-92e8-4d6a-96e4-5cc16e40009c",
+                "params": {
+                    "cmd": "powershell create_mailbox.ps1 {{vars.input.params.username}}",
+                    "allowed_exit": "-1,0",
+                    "is_super_user": false
+                },
+                "version": "2.1.1",
+                "connector": "ssh",
+                "operation": "run_remote_command",
+                "mock_result": "{\n  \"data\": \"Administrator: c:\\\\windows\\\\system32\\\\cmd.exeCYOPS_NULL\\u0007\\u001b[?25h \\r\\n\\u001b[?25lName                      Alias                ServerName       ProhibitSendQuo \\r\\n                                                                ta\\u001b[14X\\u001b[14C\\r\\n----                      -----                ----------       --------------- \\r\\n{{vars.input.params.parameters.username}}                   {{vars.input.params.parameters.username}}              exch19           Unlimited       \\r\\nName                      Alias                ServerName       ProhibitSendQuo \\r\\n                                                                ta\\u001b[14X\\u001b[14C\\r\\n----                      -----                ----------       --------------- \\r\\n{{vars.input.params.parameters.username}}                   {{vars.input.params.parameters.username}}              exch19           Unlimited       \\r\\nName                      Alias                ServerName       ProhibitSendQuo \\r\\n                                                                ta\\u001b[14X\\u001b[14C\\r\\n----                      -----                ----------       --------------- \\r\\n{{vars.input.params.parameters.username}}                   {{vars.input.params.parameters.username}}              exch19           Unlimited       \",\n  \"status\": \"Success\",\n  \"message\": \"\",\n  \"operation\": null\n}",
+                "operationTitle": "Execute remote command",
+                "pickFromTenant": false,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "300",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
+            "uuid": "0cd5d2d8-59a8-4bd4-aa96-fe196df674ac"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "useMockOutput": "{{globalVars.Demo_mode}}"
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "41b8f157-d5cb-41ea-aded-250b52fcd0c8"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "ce51227c-9260-4f25-a5a2-c44a3a9fa5f2"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Create MailBox",
+            "targetStep": "\/api\/3\/workflow_steps\/0cd5d2d8-59a8-4bd4-aa96-fe196df674ac",
+            "sourceStep": "\/api\/3\/workflow_steps\/41b8f157-d5cb-41ea-aded-250b52fcd0c8",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "b4229542-dd18-4b2c-a172-267f86b8fc10"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/41b8f157-d5cb-41ea-aded-250b52fcd0c8",
+            "sourceStep": "\/api\/3\/workflow_steps\/ce51227c-9260-4f25-a5a2-c44a3a9fa5f2",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "fb33a8fb-8621-48f3-8404-696a24c5a30b"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "643ceba5-9182-4877-b1b4-5de8a9cb9127",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": []
+}
